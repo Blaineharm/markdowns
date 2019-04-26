@@ -10,6 +10,9 @@ import 'package:markdowns/models/markdownstylemodel.dart';
 import 'package:markdowns/models/populateHierarchyModel.dart';
 import "package:collection/collection.dart";
 import 'package:flutter/foundation.dart';
+import 'package:markdowns/models/firstmarkdowndepartmentmodel.dart';
+import 'package:markdowns/models/otherdepartmentmodel.dart';
+import 'package:markdowns/models/threecdepartmentmodel.dart';
 
 class MainHierarchy extends StatelessWidget {
 //  final List<TestModel> products;
@@ -30,6 +33,9 @@ class MainHierarchy extends StatelessWidget {
   String subTitle = "";
   int ListCount;
 
+  List<FirstMarkdownDepartmentModel> firstDeptList = new List()
+  List<ThreeCDepartmentModel> threeDeptList = new List();
+  List<OtherDepartmentModel> otherDeptList = new List();
   List<FirstMarkdownCategoryModel> firstMarkupList = new List();
   List<ThreeCCategoryModel> threeList = new List();
   List<DepartmentModel> deptList = new List();
@@ -37,6 +43,7 @@ class MainHierarchy extends StatelessWidget {
   List<MarkdownRangeModel> firstRangeList = new List();
   List<MarkdownRangeModel> threeRangeList = new List();
   List<MarkdownRangeModel> otherRangeList = new List();
+
 
 
   //populates array with array past into constructor
@@ -239,10 +246,13 @@ class MainHierarchy extends StatelessWidget {
     deptList = generalList;
 
 
+    //populate department lists
+    firstDeptList = PopulateHierarchyModel.getDeptFirstList(departmentModel);
+    threeDeptList = PopulateHierarchyModel.getDeptThreeList(departmentModel);
+    otherDeptList = PopulateHierarchyModel.getDeptOtherList(departmentModel);
 
     //populate catagory Lists
     firstMarkupList = PopulateHierarchyModel.getCatalogFirstList(departmentModel);
-
     threeList = PopulateHierarchyModel.getCatalogThreeList(departmentModel);
     otherList = PopulateHierarchyModel.getCatalogOtherList(departmentModel);
 
@@ -253,13 +263,13 @@ class MainHierarchy extends StatelessWidget {
 
     switch(_selection){
       case 'Dept1st':
-        ListCount = deptList.length;
+        ListCount = firstDeptList.length;
         break;
       case 'Dept3c':
-        ListCount = deptList.length;
+        ListCount = threeDeptList.length;
         break;
       case 'DeptOther':
-        ListCount = deptList.length;
+        ListCount = otherDeptList.length;
         break;
       case 'Categry1st':
         ListCount = firstMarkupList.length;

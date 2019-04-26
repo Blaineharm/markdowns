@@ -1,7 +1,7 @@
 import 'package:markdowns/models/post.dart';
 import 'package:markdowns/models/markdownrangemodel.dart';
 import 'package:markdowns/models/departmentModel.dart';
-
+import 'package:markdowns/models/threecrangemodel.dart';
 
 class ThreeCCategoryModel{
 
@@ -13,9 +13,9 @@ class ThreeCCategoryModel{
   List<MarkdownRangeModel> _ranges = new List();
   int _rangeRolledUpc3Sold = 0;
   int _rangeRolledUp3cOutstanding = 0;
+  List<ThreeCRangeModel> _threeCRangeList = new List();
 
   List<MarkdownRangeModel> get ranges => _ranges;
-
 
   int get rangeRolledUp3cOutstanding => _rangeRolledUp3cOutstanding;
 
@@ -57,6 +57,12 @@ class ThreeCCategoryModel{
 
   set categoryName(String value) {
     _categoryName = value;
+  }
+
+  List<ThreeCRangeModel> get threeCRangeList => _threeCRangeList;
+
+  set threeCRangeList(List<ThreeCRangeModel> value) {
+    _threeCRangeList = value;
   }
 
 

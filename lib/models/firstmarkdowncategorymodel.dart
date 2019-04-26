@@ -1,6 +1,7 @@
 import 'package:markdowns/models/post.dart';
 import 'package:markdowns/models/markdownrangemodel.dart';
 import 'package:markdowns/models/departmentModel.dart';
+import 'package:markdowns/models/firstmarkuprangemodel.dart';
 
 class FirstMarkdownCategoryModel{
 
@@ -12,6 +13,7 @@ class FirstMarkdownCategoryModel{
   List<MarkdownRangeModel> _ranges = new List();
   int _rangeRolledUp1stSold;
   int _rangeRollUp1stOutstanding;
+  List<FirstMarkupRangeModel> _firstMarkupRangeModel = new List();
 
 
   FirstMarkdownCategoryModel(this._categoryName, this._categoryNumber,
@@ -65,6 +67,13 @@ class FirstMarkdownCategoryModel{
 
   set rangeRollUp1stinitialRetek(int value) {
     _rangeRollUp1stinitialRetek = value;
+  }
+
+  List<FirstMarkupRangeModel> get firstMarkupRangeModel =>
+      _firstMarkupRangeModel;
+
+  set firstMarkupRangeModel(List<FirstMarkupRangeModel> value) {
+    _firstMarkupRangeModel = value;
   }
 
 

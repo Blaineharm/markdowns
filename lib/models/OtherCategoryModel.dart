@@ -2,6 +2,7 @@
 import 'package:markdowns/models/post.dart';
 import 'package:markdowns/models/markdownrangemodel.dart';
 import 'package:markdowns/models/departmentModel.dart';
+import 'package:markdowns/models/otherrangemodel.dart';
 
 
 class OtherCategoryModel{
@@ -15,6 +16,7 @@ class OtherCategoryModel{
   List<MarkdownRangeModel> _ranges = new List();
   int _rangeRolledUpOtherSold = 0;
   int _rangeRolledOtherOutstanding = 0;
+  List<OtherRangeModel> _otherRangeModel = new List();
 
 
   int get rangeRolledOtherOutstanding => _rangeRolledOtherOutstanding;
@@ -63,6 +65,12 @@ class OtherCategoryModel{
 
   set rangeRollUpOtherFound(int value) {
     _rangeRollUpOtherFound = value;
+  }
+
+  List<OtherRangeModel> get otherRangeModel => _otherRangeModel;
+
+  set otherRangeModel(List<OtherRangeModel> value) {
+    _otherRangeModel = value;
   }
 
 

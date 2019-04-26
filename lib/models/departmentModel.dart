@@ -3,12 +3,15 @@ import 'package:markdowns/models/firstmarkdowncategorymodel.dart';
 import 'package:markdowns/models/threeccategorymodel.dart';
 import 'package:markdowns/models/OtherCategoryModel.dart';
 import 'package:markdowns/models/post.dart';
-import 'package:markdowns/models/markdownrangemodel.dart';
-import 'package:markdowns/models/markdownstylemodel.dart';
 import 'package:markdowns/models/firstmarkdowndepartmentmodel.dart';
 import 'package:markdowns/models/threecdepartmentmodel.dart';
 import 'package:markdowns/models/otherdepartmentmodel.dart';
-
+import 'package:markdowns/models/firstmarkuprangemodel.dart';
+import 'package:markdowns/models/firstmarkupstylemodel.dart';
+import 'package:markdowns/models/threecrangemodel.dart';
+import 'package:markdowns/models/threecstylemodel.dart';
+import 'package:markdowns/models/otherrangemodel.dart';
+import 'package:markdowns/models/otherstylemodel.dart';
 
 class DepartmentModel {
   int _currentRollup1st = 0;
@@ -36,6 +39,12 @@ class DepartmentModel {
   List<FirstMarkdownCategoryModel> _firstMarkdownCategoryList = new List();
   List<ThreeCCategoryModel> _threeCCategoryList = new List();
   List<OtherCategoryModel> _otherCategoryList = new List();
+  List<FirstMarkupRangeModel> _firstRangeList = new List();
+  List<FirstMarkupStyleModel> _firstStyleList = new List();
+  List<ThreeCRangeModel> _threeCRangeList = new List();
+  List<ThreeCStyleModel> _threeCStyleList = new List();
+  List<OtherRangeModel> _otherRangeList = new List();
+  List<OtherStyleModel> _otherStyleList = new List();
   List<DepartmentModel> _listOfDepartments = new List();
 
   DepartmentModel();
@@ -73,8 +82,8 @@ class DepartmentModel {
 
       DepartmentModel departmentModelObj = new DepartmentModel();
 
-      departmentModelObj._departmentName  = department.departmentName;
-      departmentModelObj._departmentNumber = department.departmentNumber;
+//      departmentModelObj._departmentName  = department.departmentName;
+//      departmentModelObj._departmentNumber = department.departmentNumber;
       firstMarkdownDepartmentModel.departmentName  = department.departmentName;
       firstMarkdownDepartmentModel.departmentNumber = department.departmentNumber;
       threeCDepartmentModel.departmentName  = department.departmentName;
@@ -82,85 +91,85 @@ class DepartmentModel {
       otherDepartmentModel.departmentName = department.departmentName;
       otherDepartmentModel.departmentNumber = department.departmentNumber;
 
-      departmentModelObj._currentRollup1st =
-          department.categoryRollUp1StCurrentRetek;
-      departmentModelObj._initialRollup1st =
-          department.categoryRollUp1StInitialRetek;
+//      departmentModelObj._currentRollup1st =
+//          department.categoryRollUp1StCurrentRetek;
+//      departmentModelObj._initialRollup1st =
+//          department.categoryRollUp1StInitialRetek;
       firstMarkdownDepartmentModel.currentRollup1st =
           department.categoryRollUp1StCurrentRetek;
       firstMarkdownDepartmentModel.initialRollup1st =
           department.categoryRollUp1StInitialRetek;
 
-      departmentModelObj._initialRollup3c =
-          department.categoryRollUp3CInitialRetek;
-      departmentModelObj._currentRollup3c =
-          department.categoryRollUp3CCurrentRetek;
+//      departmentModelObj._initialRollup3c =
+//          department.categoryRollUp3CInitialRetek;
+//      departmentModelObj._currentRollup3c =
+//          department.categoryRollUp3CCurrentRetek;
       threeCDepartmentModel.initialRollup3c =
           department.categoryRollUp3CInitialRetek;
       threeCDepartmentModel.currentRollup3c =
           department.categoryRollUp3CCurrentRetek;
 
-      departmentModelObj._initialRollupOther =
-          department.categoryRollUpOtherInitialRetek;
-      departmentModelObj._currentRollupOther =
-          department.categoryRollUpOtherCurrentRetek;
+//      departmentModelObj._initialRollupOther =
+//          department.categoryRollUpOtherInitialRetek;
+//      departmentModelObj._currentRollupOther =
+//          department.categoryRollUpOtherCurrentRetek;
       otherDepartmentModel.initialRollupOther =
           department.categoryRollUpOtherInitialRetek;
       otherDepartmentModel.currentRollupOther =
           department.categoryRollUpOtherCurrentRetek;
 
-      departmentModelObj._firstMarkdownFound =
-          department.categoryRollUp1StFound;
+//      departmentModelObj._firstMarkdownFound =
+//          department.categoryRollUp1StFound;
       firstMarkdownDepartmentModel.firstMarkdownFound =
           department.categoryRollUp1StFound;
 
-      departmentModelObj._threeCFound = department.categoryRollUp3CFound;
+//      departmentModelObj._threeCFound = department.categoryRollUp3CFound;
       threeCDepartmentModel.threeCFound = department.categoryRollUp3CFound;
 
-      departmentModelObj._otherFound = department.categoryRollUpOtherFound;
+//      departmentModelObj._otherFound = department.categoryRollUpOtherFound;
       otherDepartmentModel.otherFound = department.categoryRollUpOtherFound;
-
-      departmentModelObj._Sold1st = calcSold(
-          departmentModelObj._initialRollup1st,
-          departmentModelObj._currentRollup1st);
+//
+//      departmentModelObj._Sold1st = calcSold(
+//          departmentModelObj._initialRollup1st,
+//          departmentModelObj._currentRollup1st);
       firstMarkdownDepartmentModel.Sold1st = calcSold(
           departmentModelObj._initialRollup1st,
           departmentModelObj._currentRollup1st);
 
-      departmentModelObj._Sold3c = calcSold(departmentModelObj._initialRollup3c,
-          departmentModelObj._currentRollup3c);
+//      departmentModelObj._Sold3c = calcSold(departmentModelObj._initialRollup3c,
+//          departmentModelObj._currentRollup3c);
       threeCDepartmentModel.Sold3c = calcSold(departmentModelObj._initialRollup3c,
           departmentModelObj._currentRollup3c);
 
-      departmentModelObj._SoldOther = calcSold(
-          departmentModelObj._initialRollupOther,
-          departmentModelObj._currentRollupOther);
+//      departmentModelObj._SoldOther = calcSold(
+//          departmentModelObj._initialRollupOther,
+//          departmentModelObj._currentRollupOther);
       otherDepartmentModel.SoldOther = calcSold(
           departmentModelObj._initialRollupOther,
           departmentModelObj._currentRollupOther);
 
-      departmentModelObj._outstanding1st = calculateOutstanding(
-          departmentModelObj._initialRollup1st,
-          departmentModelObj._Sold1st,
-          departmentModelObj._firstMarkdownFound);
+//      departmentModelObj._outstanding1st = calculateOutstanding(
+//          departmentModelObj._initialRollup1st,
+//          departmentModelObj._Sold1st,
+//          departmentModelObj._firstMarkdownFound);
       firstMarkdownDepartmentModel.outstanding1st = calculateOutstanding(
           departmentModelObj._initialRollup1st,
           departmentModelObj._Sold1st,
           departmentModelObj._firstMarkdownFound);
 
-      departmentModelObj._outstanding3c = calculateOutstanding(
-          departmentModelObj._initialRollup3c,
-          departmentModelObj._Sold3c,
-          departmentModelObj._threeCFound);
+//      departmentModelObj._outstanding3c = calculateOutstanding(
+//          departmentModelObj._initialRollup3c,
+//          departmentModelObj._Sold3c,
+//          departmentModelObj._threeCFound);
       threeCDepartmentModel.outstanding3c = calculateOutstanding(
           departmentModelObj._initialRollup3c,
           departmentModelObj._Sold3c,
           departmentModelObj._threeCFound);
-
-      departmentModelObj._outstandingOther = calculateOutstanding(
-          departmentModelObj._initialRollupOther,
-          departmentModelObj._SoldOther,
-          departmentModelObj._otherFound);
+//
+//      departmentModelObj._outstandingOther = calculateOutstanding(
+//          departmentModelObj._initialRollupOther,
+//          departmentModelObj._SoldOther,
+//          departmentModelObj._otherFound);
       otherDepartmentModel.outstandingOther = calculateOutstanding(
           departmentModelObj._initialRollupOther,
           departmentModelObj._SoldOther,
@@ -192,8 +201,8 @@ class DepartmentModel {
                     firstMarkdownCategoryModel.rangeRollUp1stFound);
 
             ///
-            departmentModelObj.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+//            departmentModelObj.firstMarkdownCategoryList
+//                .add(firstMarkdownCategoryModel);
             firstMarkdownDepartmentModel.firstMarkdownCategoryList
                 .add(firstMarkdownCategoryModel);
 
@@ -215,89 +224,99 @@ class DepartmentModel {
                     threeCCategoryModel.rangeRollUp3cFound);
 
             ///
-            departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
+//            departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
             threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
 
             for (Range range in category.ranges) {
-              MarkdownRangeModel markdownRange1st = new MarkdownRangeModel();
-              MarkdownRangeModel markdownRange3c = new MarkdownRangeModel();
+              FirstMarkupRangeModel Range1st = new FirstMarkupRangeModel();
+              ThreeCRangeModel Range3c = new ThreeCRangeModel();
 
               //1st
-              markdownRange1st.rangeName = range.rangeName;
-              markdownRange1st.rangeNumber = range.rangeNumber;
-              markdownRange1st.styleRollUp1StCurrentRetek =
+              Range1st.rangeName = range.rangeName;
+              Range1st.rangeNumber = range.rangeNumber;
+              Range1st.styleRollUp1StCurrentRetek =
                   range.styleRollUp1StCurrentRetek;
-              markdownRange1st.styleRollUp1StInitialRetek =
+              Range1st.styleRollUp1StInitialRetek =
                   range.styleRollUp1StInitialRetek;
-              markdownRange1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              markdownRange1st.styleRollUp1StFound = calcSold(
-                  markdownRange1st.styleRollUp1StInitialRetek,
-                  markdownRange1st.styleRollUp1StCurrentRetek);
-              markdownRange1st.outstanding1st = calculateOutstanding(
-                  markdownRange1st._initialRollup1st,
-                  markdownRange1st.Sold1st,
-                  markdownRange1st.firstMarkdownFound);
+              Range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+              Range1st.styleRollUp1StFound = calcSold(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRollUp1StCurrentRetek);
+              Range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRolledUp1stSold,
+                  Range1st.styleRollUp1StFound);
 
               //c3
-              markdownRange3c.rangeName = range.rangeName;
-              markdownRange3c.rangeNumber = range.rangeNumber;
-              markdownRange3c.styleRollUp3CCurrentRetek =
+              Range3c.rangeName = range.rangeName;
+              Range3c.rangeNumber = range.rangeNumber;
+              Range3c.styleRollUp3CCurrentRetek =
                   range.styleRollUp3CCurrentRetek;
-              markdownRange3c.styleRollUp3CInitialRetek =
+              Range3c.styleRollUp3CInitialRetek =
                   range.styleRollUp1StInitialRetek;
-              markdownRange3c.styleRollUp3CFound = range.styleRollUp3CFound;
-              markdownRange3c.styleRolledUp3CSold = calcSold(
-                  markdownRange3c.styleRollUp3CInitialRetek,
-                  markdownRange3c.styleRollUp3CCurrentRetek);
-              markdownRange3c.outstanding3c = calculateOutstanding(
-                  markdownRange3c._initialRollup3c,
-                  markdownRange3c.Sold3c,
-                  markdownRange3c.threeCFound);
+              Range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+              Range3c.styleRolledUp3CSold = calcSold(
+                  Range3c.styleRollUp3CInitialRetek,
+                  Range3c.styleRollUp3CCurrentRetek);
+              Range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                  Range3c.styleRollUp3CInitialRetek,
+                  Range3c.styleRolledUp3CSold,
+                  Range3c.styleRollUp3CFound);
 
               ///
-              departmentModelObj.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              departmentModelObj.threeCCategoryList.first.ranges
-                  .add(markdownRange3c);
-
-              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              threeCDepartmentModel.threeCCategoryList.first.ranges
-                  .add(markdownRange3c);
-
+//              departmentModelObj.firstMarkdownCategoryList.first.ranges
+//                  .add(markdownRange1st);
+//              departmentModelObj.threeCCategoryList.first.ranges
+//                  .add(Range3c);
+              
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.firstMarkupRangeModel
+                  .add(Range1st);
+              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                  .add(Range3c);
 
 
               for (Style style in range.styles) {
-                MarkdownStyleModel markdownStyleModel =
-                    new MarkdownStyleModel();
 
-                markdownStyleModel.currentPrice = style.currentPrice;
-                markdownStyleModel.currentRetekAmount =
+                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+
+                firstStyle.currentPrice = style.currentPrice;
+                firstStyle.currentRetekAmount =
                     style.currentRetekAmount;
-                markdownStyleModel.foundAmount = style.foundAmount;
-                markdownStyleModel.initialPrice = style.initialPrice;
-                markdownStyleModel.initialRetekAmount =
+                firstStyle.foundAmount = style.foundAmount;
+                firstStyle.initialPrice = style.initialPrice;
+                firstStyle.initialRetekAmount =
                     style.initialRetekAmount;
-                markdownStyleModel.is3C = style.is3C;
-                markdownStyleModel.soldAmount = style.soldAmount;
-                markdownStyleModel.styleDescription = style.styleDescription;
-                markdownStyleModel.styleNumber = style.styleNumber;
+                firstStyle.is3C = style.is3C;
+                firstStyle.soldAmount = style.soldAmount;
+                firstStyle.styleDescription = style.styleDescription;
+                firstStyle.styleNumber = style.styleNumber;
+
+                threeCStyle.currentPrice = style.currentPrice;
+                threeCStyle.currentRetekAmount =
+                    style.currentRetekAmount;
+                threeCStyle.foundAmount = style.foundAmount;
+                threeCStyle.initialPrice = style.initialPrice;
+                threeCStyle.initialRetekAmount =
+                    style.initialRetekAmount;
+                threeCStyle.is3C = style.is3C;
+                threeCStyle.soldAmount = style.soldAmount;
+                threeCStyle.styleDescription = style.styleDescription;
+                threeCStyle.styleNumber = style.styleNumber;
 
                 //add style model to separate range models
                 ///
-                departmentModelObj
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                departmentModelObj
-                    .threeCCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+//                departmentModelObj
+//                    .firstMarkdownCategoryList.first.ranges.first.styles
+//                    .add(markdownStyleModel);
+//                departmentModelObj
+//                    .threeCCategoryList.first.ranges.first.styles
+//                    .add(markdownStyleModel);
 
                 firstMarkdownDepartmentModel
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                    .firstMarkdownCategoryList.first.firstMarkupRangeModel.first.firstMarkupStyleList.add(firstStyle);
                 threeCDepartmentModel
-                    .threeCCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                    .threeCCategoryList.first.threeCRangeList.first.threeCStyleModelList.add(threeCStyle);
               } //style for each
 
             } //ranges for each
@@ -323,8 +342,8 @@ class DepartmentModel {
                     firstMarkdownCategoryModel.rangeRolledUp1stSold,
                     firstMarkdownCategoryModel.rangeRollUp1stFound);
             ///
-            departmentModelObj.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+//            departmentModelObj.firstMarkdownCategoryList
+//                .add(firstMarkdownCategoryModel);
             firstMarkdownDepartmentModel.firstMarkdownCategoryList
                 .add(firstMarkdownCategoryModel);
 
@@ -348,89 +367,100 @@ class DepartmentModel {
                     otherCategoryModel.rangeRollUpOtherFound);
 
             ///
-            departmentModelObj.otherCategoryList.add(otherCategoryModel);
+//            departmentModelObj.otherCategoryList.add(otherCategoryModel);
             otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
 
             for (Range range in category.ranges) {
-              MarkdownRangeModel markdownRange1st = new MarkdownRangeModel();
-              MarkdownRangeModel markdownRangeOther = new MarkdownRangeModel();
+              FirstMarkupRangeModel Range1st = new FirstMarkupRangeModel();
+              OtherRangeModel RangeOther = new OtherRangeModel();
 
               //1st
-              markdownRange1st.rangeName = range.rangeName;
-              markdownRange1st.rangeNumber = range.rangeNumber;
-              markdownRange1st.styleRollUp1StCurrentRetek =
+              Range1st.rangeName = range.rangeName;
+              Range1st.rangeNumber = range.rangeNumber;
+              Range1st.styleRollUp1StCurrentRetek =
                   range.styleRollUp1StCurrentRetek;
-              markdownRange1st.styleRollUp1StInitialRetek =
+              Range1st.styleRollUp1StInitialRetek =
                   range.styleRollUp1StInitialRetek;
-              markdownRange1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              markdownRange1st.styleRollUp1StFound = calcSold(
-                  markdownRange1st.styleRollUp1StInitialRetek,
-                  markdownRange1st.styleRollUp1StCurrentRetek);
-              markdownRange1st.styleRolledUp1stOutstanding =
-                  calculateOutstanding(
-                      markdownRange1st.styleRollUp1StInitialRetek,
-                      markdownRange1st.styleRolledUp1stSold,
-                      markdownRange1st.styleRollUp1StFound);
+              Range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+              Range1st.styleRollUp1StFound = calcSold(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRollUp1StCurrentRetek);
+              Range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRolledUp1stSold,
+                  Range1st.styleRollUp1StFound);
 
               //other
-              markdownRangeOther.rangeName = range.rangeName;
-              markdownRangeOther.rangeNumber = range.rangeNumber;
-              markdownRangeOther.styleRollUpOtherCurrentRetek =
+              RangeOther.rangeName = range.rangeName;
+              RangeOther.rangeNumber = range.rangeNumber;
+              RangeOther.styleRollUpOtherCurrentRetek =
                   range.styleRollUpOtherCurrentRetek;
-              markdownRangeOther.styleRollUpOtherInitialRetek =
+              RangeOther.styleRollUpOtherInitialRetek =
                   range.styleRollUpOtherInitialRetek;
-              markdownRangeOther.styleRollUpOtherFound =
+              RangeOther.styleRollUpOtherFound =
                   range.styleRollUpOtherFound;
-              markdownRangeOther.styleRolledUpOtherSold = calcSold(
-                  markdownRangeOther.styleRollUpOtherInitialRetek,
-                  markdownRangeOther.styleRollUpOtherCurrentRetek);
-              markdownRangeOther.styleRolledUpOtherOutstanding =
+              RangeOther.styleRolledUpOtherSold = calcSold(
+                  RangeOther.styleRollUpOtherInitialRetek,
+                  RangeOther.styleRollUpOtherCurrentRetek);
+              RangeOther.styleRolledUpOtherOutstanding =
                   calculateOutstanding(
-                      markdownRangeOther.styleRollUpOtherInitialRetek,
-                      markdownRangeOther.styleRolledUpOtherSold,
-                      markdownRangeOther.styleRollUpOtherFound);
+                      RangeOther.styleRollUpOtherInitialRetek,
+                      RangeOther.styleRolledUpOtherSold,
+                      RangeOther.styleRollUpOtherFound);
 
               ///
-              departmentModelObj.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              departmentModelObj.otherCategoryList.first.ranges
-                  .add(markdownRangeOther);
+//              departmentModelObj.firstMarkdownCategoryList.first.ranges
+//                  .add(markdownRange1st);
+//              departmentModelObj.otherCategoryList.first.ranges
+//                  .add(markdownRangeOther);
 
-              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              otherDepartmentModel.otherCategoryList.first.ranges
-                  .add(markdownRangeOther);
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.firstMarkupRangeModel
+                  .add(Range1st);
+              otherDepartmentModel.otherCategoryList.first.otherRangeModel.add(RangeOther);
 
               for (Style style in range.styles) {
-                MarkdownStyleModel markdownStyleModel =
-                    new MarkdownStyleModel();
 
-                markdownStyleModel.currentPrice = style.currentPrice;
-                markdownStyleModel.currentRetekAmount =
+                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                OtherStyleModel otherStyle = new OtherStyleModel();
+
+                firstStyle.currentPrice = style.currentPrice;
+                firstStyle.currentRetekAmount =
                     style.currentRetekAmount;
-                markdownStyleModel.foundAmount = style.foundAmount;
-                markdownStyleModel.initialPrice = style.initialPrice;
-                markdownStyleModel.initialRetekAmount =
+                firstStyle.foundAmount = style.foundAmount;
+                firstStyle.initialPrice = style.initialPrice;
+                firstStyle.initialRetekAmount =
                     style.initialRetekAmount;
-                markdownStyleModel.is3C = style.is3C;
-                markdownStyleModel.soldAmount = style.soldAmount;
-                markdownStyleModel.styleDescription = style.styleDescription;
-                markdownStyleModel.styleNumber = style.styleNumber;
+                firstStyle.is3C = style.is3C;
+                firstStyle.soldAmount = style.soldAmount;
+                firstStyle.styleDescription = style.styleDescription;
+                firstStyle.styleNumber = style.styleNumber;
+
+               otherStyle.currentPrice = style.currentPrice;
+               otherStyle.currentRetekAmount =
+                    style.currentRetekAmount;
+               otherStyle.foundAmount = style.foundAmount;
+               otherStyle.initialPrice = style.initialPrice;
+               otherStyle.initialRetekAmount =
+                    style.initialRetekAmount;
+               otherStyle.is3C = style.is3C;
+               otherStyle.soldAmount = style.soldAmount;
+               otherStyle.styleDescription = style.styleDescription;
+               otherStyle.styleNumber = style.styleNumber;
 
                 ///
-                departmentModelObj
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                departmentModelObj
-                    .otherCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+//                departmentModelObj
+//                    .firstMarkdownCategoryList.first.ranges.first.styles
+//                    .add(markdownStyleModel);
+//                departmentModelObj
+//                    .otherCategoryList.first.ranges.first.styles
+//                    .add(markdownStyleModel);
 
                 firstMarkdownDepartmentModel
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                    .firstMarkdownCategoryList.first.firstMarkupRangeModel.first.firstMarkupStyleList
+                    .add(firstStyle);
                 otherDepartmentModel
-                    .otherCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                    .otherCategoryList.first.otherRangeModel.first.otherStyleModelList
+                    .add(otherStyle);
               } //style for each
 
             } //ranges for each
@@ -456,64 +486,63 @@ class DepartmentModel {
                     firstMarkdownCategoryModel.rangeRollUp1stFound);
 
             ///
-            departmentModelObj.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+//            departmentModelObj.firstMarkdownCategoryList
+//                .add(firstMarkdownCategoryModel);
 
             firstMarkdownDepartmentModel.firstMarkdownCategoryList
                 .add(firstMarkdownCategoryModel);
 
             for (Range range in category.ranges) {
-              MarkdownRangeModel markdownRange1st = new MarkdownRangeModel();
+              FirstMarkupRangeModel Range1st = new FirstMarkupRangeModel();
 
               //1st range
-              markdownRange1st.rangeName = range.rangeName;
-              markdownRange1st.rangeNumber = range.rangeNumber;
-              markdownRange1st.styleRollUp1StCurrentRetek =
+              Range1st.rangeName = range.rangeName;
+              Range1st.rangeNumber = range.rangeNumber;
+              Range1st.styleRollUp1StCurrentRetek =
                   range.styleRollUp1StCurrentRetek;
-              markdownRange1st.styleRollUp1StInitialRetek =
+              Range1st.styleRollUp1StInitialRetek =
                   range.styleRollUp1StInitialRetek;
-              markdownRange1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              markdownRange1st.styleRollUp1StFound = calcSold(
-                  markdownRange1st.styleRollUp1StInitialRetek,
-                  markdownRange1st.styleRollUp1StCurrentRetek);
-              markdownRange1st.styleRolledUp1stOutstanding =
-                  calculateOutstanding(
-                      markdownRange1st.styleRollUp1StInitialRetek,
-                      markdownRange1st.styleRolledUp1stSold,
-                      markdownRange1st.styleRollUp1StFound);
+              Range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+              Range1st.styleRollUp1StFound = calcSold(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRollUp1StCurrentRetek);
+              Range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRolledUp1stSold,
+                  Range1st.styleRollUp1StFound);
 
               //Add range model to separate catalogue models
               ///
-              departmentModelObj.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
+//              departmentModelObj.firstMarkdownCategoryList.first.ranges
+//                  .add(markdownRange1st);
 
-              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.firstMarkupRangeModel
+                  .add(Range1st);
 
               for (Style style in range.styles) {
-                MarkdownStyleModel markdownStyleModel =
-                    new MarkdownStyleModel();
+                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
 
-                markdownStyleModel.currentPrice = style.currentPrice;
-                markdownStyleModel.currentRetekAmount =
+                //1st style
+                firstStyle.currentPrice = style.currentPrice;
+                firstStyle.currentRetekAmount =
                     style.currentRetekAmount;
-                markdownStyleModel.foundAmount = style.foundAmount;
-                markdownStyleModel.initialPrice = style.initialPrice;
-                markdownStyleModel.initialRetekAmount =
+                firstStyle.foundAmount = style.foundAmount;
+                firstStyle.initialPrice = style.initialPrice;
+                firstStyle.initialRetekAmount =
                     style.initialRetekAmount;
-                markdownStyleModel.is3C = style.is3C;
-                markdownStyleModel.soldAmount = style.soldAmount;
-                markdownStyleModel.styleDescription = style.styleDescription;
-                markdownStyleModel.styleNumber = style.styleNumber;
+                firstStyle.is3C = style.is3C;
+                firstStyle.soldAmount = style.soldAmount;
+                firstStyle.styleDescription = style.styleDescription;
+                firstStyle.styleNumber = style.styleNumber;
 
                 ///
-                departmentModelObj
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+//                departmentModelObj
+//                    .firstMarkdownCategoryList.first.ranges.first.styles
+//                    .add(markdownStyleModel);
 
                 firstMarkdownDepartmentModel
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                    .firstMarkdownCategoryList.first.firstMarkupRangeModel.first.firstMarkupStyleList.add(firstStyle);
+
               } //style for each
 
             } //ranges for each
@@ -540,8 +569,8 @@ class DepartmentModel {
                     firstMarkdownCategoryModel.rangeRollUp1stFound);
 
             ///
-            departmentModelObj.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+//            departmentModelObj.firstMarkdownCategoryList
+//                .add(firstMarkdownCategoryModel);
 
             firstMarkdownDepartmentModel.firstMarkdownCategoryList
                 .add(firstMarkdownCategoryModel);
@@ -564,7 +593,7 @@ class DepartmentModel {
                     threeCCategoryModel.rangeRollUp3cFound);
 
             ///
-            departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
+//            departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
             threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
 
             OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
@@ -586,118 +615,120 @@ class DepartmentModel {
                     otherCategoryModel.rangeRolledUpOtherSold,
                     otherCategoryModel.rangeRollUpOtherFound);
             ///
-            departmentModelObj.otherCategoryList.add(otherCategoryModel);
+//            departmentModelObj.otherCategoryList.add(otherCategoryModel);
             otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
 
             for (Range range in category.ranges) {
-              MarkdownRangeModel markdownRange1st = new MarkdownRangeModel();
-              MarkdownRangeModel markdownRange3c = new MarkdownRangeModel();
-              MarkdownRangeModel markdownRangeOther = new MarkdownRangeModel();
 
-              //1st
-              markdownRange1st.rangeName = range.rangeName;
-              markdownRange1st.rangeNumber = range.rangeNumber;
-              markdownRange1st.styleRollUp1StCurrentRetek =
+              FirstMarkupRangeModel Range1st = new FirstMarkupRangeModel();
+              OtherRangeModel RangeOther = new OtherRangeModel();
+              ThreeCRangeModel Range3c = new ThreeCRangeModel();
+
+              //1st range
+              Range1st.rangeName = range.rangeName;
+              Range1st.rangeNumber = range.rangeNumber;
+              Range1st.styleRollUp1StCurrentRetek =
                   range.styleRollUp1StCurrentRetek;
-              markdownRange1st.styleRollUp1StInitialRetek =
+              Range1st.styleRollUp1StInitialRetek =
                   range.styleRollUp1StInitialRetek;
-              markdownRange1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              markdownRange1st.styleRollUp1StFound = calcSold(
-                  markdownRange1st.styleRollUp1StInitialRetek,
-                  markdownRange1st.styleRollUp1StCurrentRetek);
-              markdownRange1st.styleRolledUp1stOutstanding =
-                  calculateOutstanding(
-                      markdownRange1st.styleRollUp1StInitialRetek,
-                      markdownRange1st.styleRolledUp1stSold,
-                      markdownRange1st.styleRollUp1StFound);
+              Range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+              Range1st.styleRollUp1StFound = calcSold(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRollUp1StCurrentRetek);
+              Range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                  Range1st.styleRollUp1StInitialRetek,
+                  Range1st.styleRolledUp1stSold,
+                  Range1st.styleRollUp1StFound);
 
-              //c3
-              markdownRange3c.rangeName = range.rangeName;
-              markdownRange3c.rangeNumber = range.rangeNumber;
-              markdownRange3c.styleRollUp3CCurrentRetek =
-                  range.styleRollUp3CCurrentRetek;
-              markdownRange3c.styleRollUp3CInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              markdownRange3c.styleRollUp3CFound = range.styleRollUp3CFound;
-              markdownRange3c.styleRolledUp3CSold = calcSold(
-                  markdownRange3c.styleRollUp3CInitialRetek,
-                  markdownRange3c.styleRollUp3CCurrentRetek);
-              markdownRange3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                  markdownRange3c.styleRollUp3CInitialRetek,
-                  markdownRange3c.styleRolledUp3CSold,
-                  markdownRange3c.styleRollUp3CFound);
-
-              //other
-              markdownRangeOther.rangeName = range.rangeName;
-              markdownRangeOther.rangeNumber = range.rangeNumber;
-              markdownRangeOther.styleRollUpOtherCurrentRetek =
+              //other range
+              RangeOther.rangeName = range.rangeName;
+              RangeOther.rangeNumber = range.rangeNumber;
+              RangeOther.styleRollUpOtherCurrentRetek =
                   range.styleRollUpOtherCurrentRetek;
-              markdownRangeOther.styleRollUpOtherInitialRetek =
+              RangeOther.styleRollUpOtherInitialRetek =
                   range.styleRollUpOtherInitialRetek;
-              markdownRangeOther.styleRollUpOtherFound =
+              RangeOther.styleRollUpOtherFound =
                   range.styleRollUpOtherFound;
-              markdownRangeOther.styleRolledUpOtherSold = calcSold(
-                  markdownRangeOther.styleRollUpOtherInitialRetek,
-                  markdownRangeOther.styleRollUpOtherCurrentRetek);
-              markdownRangeOther.styleRolledUpOtherOutstanding =
+              RangeOther.styleRolledUpOtherSold = calcSold(
+                  RangeOther.styleRollUpOtherInitialRetek,
+                  RangeOther.styleRollUpOtherCurrentRetek);
+              RangeOther.styleRolledUpOtherOutstanding =
                   calculateOutstanding(
-                      markdownRangeOther.styleRollUpOtherInitialRetek,
-                      markdownRangeOther.styleRolledUpOtherSold,
-                      markdownRangeOther.styleRollUpOtherFound);
+                      RangeOther.styleRollUpOtherInitialRetek,
+                      RangeOther.styleRolledUpOtherSold,
+                      RangeOther.styleRollUpOtherFound);
 
-              //Add range model to separate catalogue models
-              ///
-              departmentModelObj.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              departmentModelObj.otherCategoryList.first.ranges
-                  .add(markdownRangeOther);
-              departmentModelObj.threeCCategoryList.first.ranges
-                  .add(markdownRange3c);
+              //threec range
+              Range3c.rangeName = range.rangeName;
+              Range3c.rangeNumber = range.rangeNumber;
+              Range3c.styleRollUp3CCurrentRetek =
+                  range.styleRollUp3CCurrentRetek;
+              Range3c.styleRollUp3CInitialRetek =
+                  range.styleRollUp1StInitialRetek;
+              Range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+              Range3c.styleRolledUp3CSold = calcSold(
+                  Range3c.styleRollUp3CInitialRetek,
+                  Range3c.styleRollUp3CCurrentRetek);
+              Range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                  Range3c.styleRollUp3CInitialRetek,
+                  Range3c.styleRolledUp3CSold,
+                  Range3c.styleRollUp3CFound);
 
-              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.ranges
-                  .add(markdownRange1st);
-              otherDepartmentModel.otherCategoryList.first.ranges
-                  .add(markdownRangeOther);
-              threeCDepartmentModel.threeCCategoryList.first.ranges
-                  .add(markdownRange3c);
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.firstMarkupRangeModel
+                  .add(Range1st);
+              otherDepartmentModel.otherCategoryList.first.otherRangeModel.add(RangeOther);
+              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                  .add(Range3c);
 
               for (Style style in range.styles) {
-                MarkdownStyleModel markdownStyleModel =
-                    new MarkdownStyleModel();
+                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+                OtherStyleModel otherStyle = new OtherStyleModel();
 
-                markdownStyleModel.currentPrice = style.currentPrice;
-                markdownStyleModel.currentRetekAmount =
+                //1st style
+                firstStyle.currentPrice = style.currentPrice;
+                firstStyle.currentRetekAmount =
                     style.currentRetekAmount;
-                markdownStyleModel.foundAmount = style.foundAmount;
-                markdownStyleModel.initialPrice = style.initialPrice;
-                markdownStyleModel.initialRetekAmount =
+                firstStyle.foundAmount = style.foundAmount;
+                firstStyle.initialPrice = style.initialPrice;
+                firstStyle.initialRetekAmount =
                     style.initialRetekAmount;
-                markdownStyleModel.is3C = style.is3C;
-                markdownStyleModel.soldAmount = style.soldAmount;
-                markdownStyleModel.styleDescription = style.styleDescription;
-                markdownStyleModel.styleNumber = style.styleNumber;
+                firstStyle.is3C = style.is3C;
+                firstStyle.soldAmount = style.soldAmount;
+                firstStyle.styleDescription = style.styleDescription;
+                firstStyle.styleNumber = style.styleNumber;
 
-                //add style model to separate range model
-                ///
-                departmentModelObj
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                departmentModelObj
-                    .threeCCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                departmentModelObj
-                    .otherCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                //3c style
+                threeCStyle.currentPrice = style.currentPrice;
+                threeCStyle.currentRetekAmount =
+                    style.currentRetekAmount;
+                threeCStyle.foundAmount = style.foundAmount;
+                threeCStyle.initialPrice = style.initialPrice;
+                threeCStyle.initialRetekAmount =
+                    style.initialRetekAmount;
+                threeCStyle.is3C = style.is3C;
+                threeCStyle.soldAmount = style.soldAmount;
+                threeCStyle.styleDescription = style.styleDescription;
+                threeCStyle.styleNumber = style.styleNumber;
 
-                firstMarkdownDepartmentModel
-                    .firstMarkdownCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                threeCDepartmentModel
-                    .threeCCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
-                otherDepartmentModel
-                    .otherCategoryList.first.ranges.first.styles
-                    .add(markdownStyleModel);
+                //other style
+                otherStyle.currentPrice = style.currentPrice;
+                otherStyle.currentRetekAmount =
+                    style.currentRetekAmount;
+                otherStyle.foundAmount = style.foundAmount;
+                otherStyle.initialPrice = style.initialPrice;
+                otherStyle.initialRetekAmount =
+                    style.initialRetekAmount;
+                otherStyle.is3C = style.is3C;
+                otherStyle.soldAmount = style.soldAmount;
+                otherStyle.styleDescription = style.styleDescription;
+                otherStyle.styleNumber = style.styleNumber;
+
+
+                firstMarkdownDepartmentModel.firstMarkdownCategoryList.first.firstMarkupRangeModel.first.firstMarkupStyleList.add(firstStyle);
+                threeCDepartmentModel.threeCCategoryList.first.threeCRangeList.first.threeCStyleModelList.add(threeCStyle);
+
+                otherDepartmentModel.otherCategoryList.first.otherRangeModel.first.otherStyleModelList.add(otherStyle);
               } //style for each
 
             } //ranges for each
@@ -727,55 +758,57 @@ class DepartmentModel {
               otherCategoryModel.rangeRollUpOtherFound);
 
           ///
-          departmentModelObj.otherCategoryList.add(otherCategoryModel);
+//          departmentModelObj.otherCategoryList.add(otherCategoryModel);
           otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
           //other
 
           for (Range range in category.ranges) {
-            MarkdownRangeModel markdownRangeOther = new MarkdownRangeModel();
+            OtherRangeModel RangeOther = new OtherRangeModel();
 
             //other
-            markdownRangeOther.rangeName = range.rangeName;
-            markdownRangeOther.rangeNumber = range.rangeNumber;
-            markdownRangeOther.styleRollUpOtherCurrentRetek =
+            //other range
+            RangeOther.rangeName = range.rangeName;
+            RangeOther.rangeNumber = range.rangeNumber;
+            RangeOther.styleRollUpOtherCurrentRetek =
                 range.styleRollUpOtherCurrentRetek;
-            markdownRangeOther.styleRollUpOtherInitialRetek =
+            RangeOther.styleRollUpOtherInitialRetek =
                 range.styleRollUpOtherInitialRetek;
-            markdownRangeOther.styleRollUpOtherFound =
+            RangeOther.styleRollUpOtherFound =
                 range.styleRollUpOtherFound;
-            markdownRangeOther.styleRolledUpOtherSold = calcSold(
-                markdownRangeOther.styleRollUpOtherInitialRetek,
-                markdownRangeOther.styleRollUpOtherCurrentRetek);
-            markdownRangeOther.styleRolledUpOtherOutstanding =
+            RangeOther.styleRolledUpOtherSold = calcSold(
+                RangeOther.styleRollUpOtherInitialRetek,
+                RangeOther.styleRollUpOtherCurrentRetek);
+            RangeOther.styleRolledUpOtherOutstanding =
                 calculateOutstanding(
-                    markdownRangeOther.styleRollUpOtherInitialRetek,
-                    markdownRangeOther.styleRolledUpOtherSold,
-                    markdownRangeOther.styleRollUpOtherFound);
+                    RangeOther.styleRollUpOtherInitialRetek,
+                    RangeOther.styleRolledUpOtherSold,
+                    RangeOther.styleRollUpOtherFound);
             ///
-            departmentModelObj.otherCategoryList.first.ranges
-                .add(markdownRangeOther);
-            otherDepartmentModel.otherCategoryList.first.ranges
-                .add(markdownRangeOther);
+//            departmentModelObj.otherCategoryList.first.ranges
+//                .add(markdownRangeOther);
+            otherDepartmentModel.otherCategoryList.first.otherRangeModel.add(RangeOther);
             //Add range model to separate catalogue models
 
             for (Style style in range.styles) {
-              MarkdownStyleModel markdownStyleModel = new MarkdownStyleModel();
+              OtherStyleModel otherStyle = new OtherStyleModel();
 
-              markdownStyleModel.currentPrice = style.currentPrice;
-              markdownStyleModel.currentRetekAmount = style.currentRetekAmount;
-              markdownStyleModel.foundAmount = style.foundAmount;
-              markdownStyleModel.initialPrice = style.initialPrice;
-              markdownStyleModel.initialRetekAmount = style.initialRetekAmount;
-              markdownStyleModel.is3C = style.is3C;
-              markdownStyleModel.soldAmount = style.soldAmount;
-              markdownStyleModel.styleDescription = style.styleDescription;
-              markdownStyleModel.styleNumber = style.styleNumber;
+              //other style
+              otherStyle.currentPrice = style.currentPrice;
+              otherStyle.currentRetekAmount =
+                  style.currentRetekAmount;
+              otherStyle.foundAmount = style.foundAmount;
+              otherStyle.initialPrice = style.initialPrice;
+              otherStyle.initialRetekAmount =
+                  style.initialRetekAmount;
+              otherStyle.is3C = style.is3C;
+              otherStyle.soldAmount = style.soldAmount;
+              otherStyle.styleDescription = style.styleDescription;
+              otherStyle.styleNumber = style.styleNumber;
 
               ///
-              departmentModelObj.otherCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
-              otherDepartmentModel.otherCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
+//              departmentModelObj.otherCategoryList.first.ranges.first.styles
+//                  .add(markdownStyleModel);
+              otherDepartmentModel.otherCategoryList.first.otherRangeModel.first.otherStyleModelList.add(otherStyle);
               //add style model to separate range models
 
             } //style for each
@@ -804,56 +837,58 @@ class DepartmentModel {
               threeCCategoryModel.rangeRollUp3cFound);
 
           ///
-          departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
+//          departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
           threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
           //3c
 
           for (Range range in category.ranges) {
-            MarkdownRangeModel markdownRange3c = new MarkdownRangeModel();
+            ThreeCRangeModel Range3c = new ThreeCRangeModel();
 
             //c3
-            markdownRange3c.rangeName = range.rangeName;
-            markdownRange3c.rangeNumber = range.rangeNumber;
-            markdownRange3c.styleRollUp3CCurrentRetek =
+            //threec range
+            Range3c.rangeName = range.rangeName;
+            Range3c.rangeNumber = range.rangeNumber;
+            Range3c.styleRollUp3CCurrentRetek =
                 range.styleRollUp3CCurrentRetek;
-            markdownRange3c.styleRollUp3CInitialRetek =
+            Range3c.styleRollUp3CInitialRetek =
                 range.styleRollUp1StInitialRetek;
-            markdownRange3c.styleRollUp3CFound = range.styleRollUp3CFound;
-            markdownRange3c.styleRolledUp3CSold = calcSold(
-                markdownRange3c.styleRollUp3CInitialRetek,
-                markdownRange3c.styleRollUp3CCurrentRetek);
-            markdownRange3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                markdownRange3c.styleRollUp3CInitialRetek,
-                markdownRange3c.styleRolledUp3CSold,
-                markdownRange3c.styleRollUp3CFound);
+            Range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+            Range3c.styleRolledUp3CSold = calcSold(
+                Range3c.styleRollUp3CInitialRetek,
+                Range3c.styleRollUp3CCurrentRetek);
+            Range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                Range3c.styleRollUp3CInitialRetek,
+                Range3c.styleRolledUp3CSold,
+                Range3c.styleRollUp3CFound);
 
             ///
-            departmentModelObj.threeCCategoryList.first.ranges
-                .add(markdownRange3c);
-            threeCDepartmentModel.threeCCategoryList.first.ranges
-                .add(markdownRange3c);
+//            departmentModelObj.threeCCategoryList.first.ranges
+//                .add(Range3c);
+            threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                .add(Range3c);
             //Add range model to separate catalogue models
 
             for (Style style in range.styles) {
-              MarkdownStyleModel markdownStyleModel = new MarkdownStyleModel();
+              ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
 
-              markdownStyleModel.currentPrice = style.currentPrice;
-              markdownStyleModel.currentRetekAmount = style.currentRetekAmount;
-              markdownStyleModel.foundAmount = style.foundAmount;
-              markdownStyleModel.initialPrice = style.initialPrice;
-              markdownStyleModel.initialRetekAmount = style.initialRetekAmount;
-              markdownStyleModel.is3C = style.is3C;
-              markdownStyleModel.soldAmount = style.soldAmount;
-              markdownStyleModel.styleDescription = style.styleDescription;
-              markdownStyleModel.styleNumber = style.styleNumber;
+              //3c style
+              threeCStyle.currentPrice = style.currentPrice;
+              threeCStyle.currentRetekAmount =
+                  style.currentRetekAmount;
+              threeCStyle.foundAmount = style.foundAmount;
+              threeCStyle.initialPrice = style.initialPrice;
+              threeCStyle.initialRetekAmount =
+                  style.initialRetekAmount;
+              threeCStyle.is3C = style.is3C;
+              threeCStyle.soldAmount = style.soldAmount;
+              threeCStyle.styleDescription = style.styleDescription;
+              threeCStyle.styleNumber = style.styleNumber;
 
               ///
-              departmentModelObj
-                  .threeCCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
-              threeCDepartmentModel
-                  .threeCCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
+//              departmentModelObj
+//                  .threeCCategoryList.first.ranges.first.styles
+//                  .add(markdownStyleModel);
+              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList.first.threeCStyleModelList.add(threeCStyle);
               //add style model to separate range models
 
             } //style for each
@@ -882,7 +917,7 @@ class DepartmentModel {
               threeCCategoryModel.rangeRollUp3cFound);
 
           ///
-          departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
+//          departmentModelObj.threeCCategoryList.add(threeCCategoryModel);
           threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
           //3c
 
@@ -905,84 +940,98 @@ class DepartmentModel {
               otherCategoryModel.rangeRollUpOtherFound);
 
           ///
-          departmentModelObj.otherCategoryList.add(otherCategoryModel);
+//          departmentModelObj.otherCategoryList.add(otherCategoryModel);
           otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
           //other
 
           for (Range range in category.ranges) {
-            MarkdownRangeModel markdownRange3c = new MarkdownRangeModel();
-            MarkdownRangeModel markdownRangeOther = new MarkdownRangeModel();
+            ThreeCRangeModel Range3c = new ThreeCRangeModel();
+            OtherRangeModel RangeOther = new OtherRangeModel();
 
-            //c3
-            markdownRange3c.rangeName = range.rangeName;
-            markdownRange3c.rangeNumber = range.rangeNumber;
-            markdownRange3c.styleRollUp3CCurrentRetek =
+            //threec range
+            Range3c.rangeName = range.rangeName;
+            Range3c.rangeNumber = range.rangeNumber;
+            Range3c.styleRollUp3CCurrentRetek =
                 range.styleRollUp3CCurrentRetek;
-            markdownRange3c.styleRollUp3CInitialRetek =
+            Range3c.styleRollUp3CInitialRetek =
                 range.styleRollUp1StInitialRetek;
-            markdownRange3c.styleRollUp3CFound = range.styleRollUp3CFound;
-            markdownRange3c.styleRolledUp3CSold = calcSold(
-                markdownRange3c.styleRollUp3CInitialRetek,
-                markdownRange3c.styleRollUp3CCurrentRetek);
-            markdownRange3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                markdownRange3c.styleRollUp3CInitialRetek,
-                markdownRange3c.styleRolledUp3CSold,
-                markdownRange3c.styleRollUp3CFound);
+            Range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+            Range3c.styleRolledUp3CSold = calcSold(
+                Range3c.styleRollUp3CInitialRetek,
+                Range3c.styleRollUp3CCurrentRetek);
+            Range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                Range3c.styleRollUp3CInitialRetek,
+                Range3c.styleRolledUp3CSold,
+                Range3c.styleRollUp3CFound);
 
             //other range
-            markdownRangeOther.rangeName = range.rangeName;
-            markdownRangeOther.rangeNumber = range.rangeNumber;
-            markdownRangeOther.styleRollUpOtherCurrentRetek =
+            RangeOther.rangeName = range.rangeName;
+            RangeOther.rangeNumber = range.rangeNumber;
+            RangeOther.styleRollUpOtherCurrentRetek =
                 range.styleRollUpOtherCurrentRetek;
-            markdownRangeOther.styleRollUpOtherInitialRetek =
+            RangeOther.styleRollUpOtherInitialRetek =
                 range.styleRollUpOtherInitialRetek;
-            markdownRangeOther.styleRollUpOtherFound =
+            RangeOther.styleRollUpOtherFound =
                 range.styleRollUpOtherFound;
-            markdownRangeOther.styleRolledUpOtherSold = calcSold(
-                markdownRangeOther.styleRollUpOtherInitialRetek,
-                markdownRangeOther.styleRollUpOtherCurrentRetek);
-            markdownRangeOther.styleRolledUpOtherOutstanding =
+            RangeOther.styleRolledUpOtherSold = calcSold(
+                RangeOther.styleRollUpOtherInitialRetek,
+                RangeOther.styleRollUpOtherCurrentRetek);
+            RangeOther.styleRolledUpOtherOutstanding =
                 calculateOutstanding(
-                    markdownRangeOther.styleRollUpOtherInitialRetek,
-                    markdownRangeOther.styleRolledUpOtherSold,
-                    markdownRangeOther.styleRollUpOtherFound);
+                    RangeOther.styleRollUpOtherInitialRetek,
+                    RangeOther.styleRolledUpOtherSold,
+                    RangeOther.styleRollUpOtherFound);
 
             //Add range model to separate catalogue models
             ///
-            departmentModelObj.threeCCategoryList.first.ranges
-                .add(markdownRange3c);
-            departmentModelObj.otherCategoryList.first.ranges
-                .add(markdownRangeOther);
-            threeCDepartmentModel.threeCCategoryList.first.ranges
-                .add(markdownRange3c);
-            otherDepartmentModel.otherCategoryList.first.ranges
-                .add(markdownRangeOther);
+//            departmentModelObj.threeCCategoryList.first.ranges
+//                .add(Range3c);
+//            departmentModelObj.otherCategoryList.first.ranges
+//                .add(markdownRangeOther);
+            threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                .add(Range3c);
+            otherDepartmentModel.otherCategoryList.first.otherRangeModel.add(RangeOther);
 
             for (Style style in range.styles) {
-              MarkdownStyleModel markdownStyleModel = new MarkdownStyleModel();
+              ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+              OtherStyleModel otherStyle = new OtherStyleModel();
 
-              markdownStyleModel.currentPrice = style.currentPrice;
-              markdownStyleModel.currentRetekAmount = style.currentRetekAmount;
-              markdownStyleModel.foundAmount = style.foundAmount;
-              markdownStyleModel.initialPrice = style.initialPrice;
-              markdownStyleModel.initialRetekAmount = style.initialRetekAmount;
-              markdownStyleModel.is3C = style.is3C;
-              markdownStyleModel.soldAmount = style.soldAmount;
-              markdownStyleModel.styleDescription = style.styleDescription;
-              markdownStyleModel.styleNumber = style.styleNumber;
+              //3c style
+              threeCStyle.currentPrice = style.currentPrice;
+              threeCStyle.currentRetekAmount =
+                  style.currentRetekAmount;
+              threeCStyle.foundAmount = style.foundAmount;
+              threeCStyle.initialPrice = style.initialPrice;
+              threeCStyle.initialRetekAmount =
+                  style.initialRetekAmount;
+              threeCStyle.is3C = style.is3C;
+              threeCStyle.soldAmount = style.soldAmount;
+              threeCStyle.styleDescription = style.styleDescription;
+              threeCStyle.styleNumber = style.styleNumber;
+
+              //other style
+              otherStyle.currentPrice = style.currentPrice;
+              otherStyle.currentRetekAmount =
+                  style.currentRetekAmount;
+              otherStyle.foundAmount = style.foundAmount;
+              otherStyle.initialPrice = style.initialPrice;
+              otherStyle.initialRetekAmount =
+                  style.initialRetekAmount;
+              otherStyle.is3C = style.is3C;
+              otherStyle.soldAmount = style.soldAmount;
+              otherStyle.styleDescription = style.styleDescription;
+              otherStyle.styleNumber = style.styleNumber;
 
               //add style model to separate range models
               ///
-              departmentModelObj
-                  .threeCCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
-              departmentModelObj.otherCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
-              threeCDepartmentModel
-                  .threeCCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
-              otherDepartmentModel.otherCategoryList.first.ranges.first.styles
-                  .add(markdownStyleModel);
+//              departmentModelObj
+//                  .threeCCategoryList.first.ranges.first.styles
+//                  .add(markdownStyleModel);
+//              departmentModelObj.otherCategoryList.first.ranges.first.styles
+//                  .add(markdownStyleModel);
+              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList.first.threeCStyleModelList.add(threeCStyle);
+
+              otherDepartmentModel.otherCategoryList.first.otherRangeModel.first.otherStyleModelList.add(otherStyle);
             } //style for each
 
           } //ranges for each
@@ -1146,4 +1195,63 @@ class DepartmentModel {
   set SoldOther(int value) {
     _SoldOther = value;
   }
+
+  List<OtherDepartmentModel> get otherDepartmentModel => _otherDepartmentModel;
+
+  set otherDepartmentModel(List<OtherDepartmentModel> value) {
+    _otherDepartmentModel = value;
+  }
+
+  List<ThreeCDepartmentModel> get threeCDepartmentModel =>
+      _threeCDepartmentModel;
+
+  set threeCDepartmentModel(List<ThreeCDepartmentModel> value) {
+    _threeCDepartmentModel = value;
+  }
+
+  List<FirstMarkdownDepartmentModel> get firstMarkdownDepratmentModelList =>
+      _firstMarkdownDepratmentModelList;
+
+  set firstMarkdownDepratmentModelList(
+      List<FirstMarkdownDepartmentModel> value) {
+    _firstMarkdownDepratmentModelList = value;
+  }
+
+  List<OtherStyleModel> get otherStyleList => _otherStyleList;
+
+  set otherStyleList(List<OtherStyleModel> value) {
+    _otherStyleList = value;
+  }
+
+  List<OtherRangeModel> get otherRangeList => _otherRangeList;
+
+  set otherRangeList(List<OtherRangeModel> value) {
+    _otherRangeList = value;
+  }
+
+  List<ThreeCStyleModel> get threeCStyleList => _threeCStyleList;
+
+  set threeCStyleList(List<ThreeCStyleModel> value) {
+    _threeCStyleList = value;
+  }
+
+  List<ThreeCRangeModel> get threeCRangeList => _threeCRangeList;
+
+  set threeCRangeList(List<ThreeCRangeModel> value) {
+    _threeCRangeList = value;
+  }
+
+  List<FirstMarkupStyleModel> get firstStyleList => _firstStyleList;
+
+  set firstStyleList(List<FirstMarkupStyleModel> value) {
+    _firstStyleList = value;
+  }
+
+  List<FirstMarkupRangeModel> get firstRangeList => _firstRangeList;
+
+  set firstRangeList(List<FirstMarkupRangeModel> value) {
+    _firstRangeList = value;
+  }
+
+
 }

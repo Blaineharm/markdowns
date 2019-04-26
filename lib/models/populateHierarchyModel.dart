@@ -3,6 +3,9 @@ import 'package:markdowns/models/departmentModel.dart';
 import 'package:markdowns/models/firstmarkdowncategorymodel.dart';
 import 'package:markdowns/models/threeccategorymodel.dart';
 import 'package:markdowns/models/markdownrangemodel.dart';
+import 'package:markdowns/models/firstmarkdowndepartmentmodel.dart';
+import 'package:markdowns/models/otherdepartmentmodel.dart';
+import 'package:markdowns/models/threecdepartmentmodel.dart';
 
 class PopulateHierarchyModel {
 
@@ -31,6 +34,42 @@ class PopulateHierarchyModel {
 //        return null;
 //    }
 //  }
+
+ static List<FirstMarkdownDepartmentModel> getDeptFirstList(DepartmentModel departmentModel){
+
+   List<FirstMarkdownDepartmentModel> firstDeptList = new List();
+
+   for(FirstMarkdownDepartmentModel firstMarkdownDepartmentModel in departmentModel.firstMarkdownDepratmentModelList){
+
+     firstDeptList.add(firstMarkdownDepartmentModel);
+   }
+   return firstDeptList;
+
+ }
+
+ static List<OtherDepartmentModel> getDeptOtherList(DepartmentModel departmentModel){
+
+   List<OtherDepartmentModel> otherDeptList = new List();
+
+   for(OtherDepartmentModel otherDepartmentModel  in departmentModel.otherDepartmentModel){
+
+     otherDeptList.add(otherDepartmentModel);
+   }
+   return otherDeptList;
+
+ }
+
+ static List<ThreeCDepartmentModel> getDeptThreeList(DepartmentModel departmentModel){
+
+   List<ThreeCDepartmentModel> threeDeptList = new List();
+
+   for(ThreeCDepartmentModel threeCDepartmentModel in departmentModel.threeCDepartmentModel){
+
+     threeDeptList.add(threeCDepartmentModel);
+   }
+   return threeDeptList;
+
+ }
 
  static List<FirstMarkdownCategoryModel> getCatalogFirstList(
       DepartmentModel departmentModel) {
