@@ -2,38 +2,17 @@ import 'package:markdowns/models/OtherCategoryModel.dart';
 import 'package:markdowns/models/departmentModel.dart';
 import 'package:markdowns/models/firstmarkdowncategorymodel.dart';
 import 'package:markdowns/models/threeccategorymodel.dart';
-import 'package:markdowns/models/markdownrangemodel.dart';
 import 'package:markdowns/models/firstmarkdowndepartmentmodel.dart';
 import 'package:markdowns/models/otherdepartmentmodel.dart';
 import 'package:markdowns/models/threecdepartmentmodel.dart';
+import 'package:markdowns/models/firstmarkuprangemodel.dart';
+import 'package:markdowns/models/firstmarkupstylemodel.dart';
+import 'package:markdowns/models/threecrangemodel.dart';
+import 'package:markdowns/models/threecstylemodel.dart';
+import 'package:markdowns/models/otherrangemodel.dart';
+import 'package:markdowns/models/otherstylemodel.dart';
 
 class PopulateHierarchyModel {
-
-//  List<dynamic> getPopulatedList(
-//      DepartmentModel departmentModel, String selection) {
-//    switch (selection) {
-//      case "Category1st":
-//        var list = getCatalogFirstList(departmentModel);
-//        return list;
-//      case "Category3c":
-//        var list = getCatalogThreeList(departmentModel);
-//        return list;
-//      case "CategoryOther":
-//        var list = getCatalogOtherList(departmentModel);
-//        return list;
-//      case "Range1st":
-//        var list = getRangeModelFirstList(departmentModel);
-//        return list;
-//      case "Range3c":
-//        var list = getThreeRangeList(departmentModel);
-//        return list;
-//      case "RangeOther":
-//        var list = getOtherRangeList(departmentModel);
-//        return list;
-//      default:
-//        return null;
-//    }
-//  }
 
  static List<FirstMarkdownDepartmentModel> getDeptFirstList(DepartmentModel departmentModel){
 
@@ -110,15 +89,15 @@ class PopulateHierarchyModel {
     return otherCatList;
   }
 
-  static List<MarkdownRangeModel> getRangeModelFirstList(
+  static List<FirstMarkupRangeModel> getRangeModelFirstList(
       DepartmentModel departmentModel) {
-    List<MarkdownRangeModel> firstRangeList = new List();
+    List<FirstMarkupRangeModel> firstRangeList = new List();
 
     for (DepartmentModel department in departmentModel.listOfDepartments) {
       for (FirstMarkdownCategoryModel firstCategoryModel
           in department.firstMarkdownCategoryList) {
-        for (MarkdownRangeModel firstMarkdownrange
-            in firstCategoryModel.ranges) {
+        for (FirstMarkupRangeModel firstMarkdownrange
+            in firstCategoryModel.firstMarkupRangeModel) {
           firstRangeList.add(firstMarkdownrange);
         }
       }
@@ -126,36 +105,88 @@ class PopulateHierarchyModel {
     return firstRangeList;
   }
 
-  static List<MarkdownRangeModel> getThreeRangeList(DepartmentModel departmentModel) {
-    List<MarkdownRangeModel> threeRangeList = new List();
+  static List<ThreeCRangeModel> getThreeRangeList(DepartmentModel departmentModel) {
+    List<ThreeCRangeModel> threeRangeList = new List();
 
     for (DepartmentModel department in departmentModel.listOfDepartments) {
       for (ThreeCCategoryModel threeCCategoryModel
           in department.threeCCategoryList) {
-        for (MarkdownRangeModel markdownRangeModel
-            in threeCCategoryModel.ranges) {
-          threeRangeList.add(markdownRangeModel);
+        for (ThreeCRangeModel threeRangeModel
+            in threeCCategoryModel.threeCRangeList) {
+          threeRangeList.add(threeRangeModel);
         }
       }
     }
     return threeRangeList;
   }
 
-  static List<MarkdownRangeModel> getOtherRangeList(DepartmentModel departmentModel) {
-    List<MarkdownRangeModel> otherRangeList = new List();
+  static List<OtherRangeModel> getOtherRangeList(DepartmentModel departmentModel) {
+    List<OtherRangeModel> otherRangeList = new List();
 
     for (DepartmentModel department in departmentModel.listOfDepartments) {
       for (OtherCategoryModel otherCategoryModel
           in department.otherCategoryList) {
-        for (MarkdownRangeModel markdownRangeModel
-            in otherCategoryModel.ranges) {
-          otherRangeList.add(markdownRangeModel);
+        for (OtherRangeModel otherRangeModel
+            in otherCategoryModel.otherRangeModel) {
+          otherRangeList.add(otherRangeModel);
         }
       }
     }
     return otherRangeList;
   }
 
+ static List<FirstMarkupStyleModel> getStyleModelFirstList(
+     DepartmentModel departmentModel) {
+   List<FirstMarkupStyleModel> firstStyleList = new List();
 
+   for (DepartmentModel department in departmentModel.listOfDepartments) {
+     for (FirstMarkdownCategoryModel firstCategoryModel
+     in department.firstMarkdownCategoryList) {
+       for (FirstMarkupRangeModel firstMarkdownrange
+       in firstCategoryModel.firstMarkupRangeModel) {
+         for(FirstMarkupStyleModel firstMarkupStyleModel in firstMarkdownrange.firstMarkupStyleList) {
+           firstStyleList.add(firstMarkupStyleModel);
+         }
+       }
+     }
+   }
+   return firstStyleList;
+ }
+
+ static List<ThreeCStyleModel> getStyleModelThreeCList(
+     DepartmentModel departmentModel) {
+   List<ThreeCStyleModel> firstStyleList = new List();
+
+   for (DepartmentModel department in departmentModel.listOfDepartments) {
+     for (ThreeCCategoryModel threeCCategoryModel
+     in department.threeCCategoryList) {
+       for (ThreeCRangeModel threeCRange
+       in threeCCategoryModel.threeCRangeList) {
+         for(ThreeCStyleModel threeCStyleModel in threeCRange.threeCStyleModelList) {
+           firstStyleList.add(threeCStyleModel);
+         }
+       }
+     }
+   }
+   return firstStyleList;
+ }
+
+ static List<OtherStyleModel> getStyleModelOtherList(
+     DepartmentModel departmentModel) {
+   List<OtherStyleModel> otherStyleList = new List();
+
+   for (DepartmentModel department in departmentModel.listOfDepartments) {
+     for (OtherCategoryModel otherCategoryModel
+     in department.otherCategoryList) {
+       for (OtherRangeModel otherRange
+       in otherCategoryModel.otherRangeModel) {
+         for(OtherStyleModel otherStyleModel in otherRange.otherStyleModelList) {
+           otherStyleList .add(otherStyleModel);
+         }
+       }
+     }
+   }
+   return otherStyleList;
+ }
 
 }

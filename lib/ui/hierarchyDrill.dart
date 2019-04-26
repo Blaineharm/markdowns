@@ -4,13 +4,14 @@ import 'package:markdowns/ui/mainhierarchy.dart';
 import 'package:markdowns/models/post.dart';
 import 'package:markdowns/models/departmentModel.dart';
 import 'package:markdowns/main.dart';
+import 'package:markdowns/ui/departmentview.dart';
 
 class HierarchyDrill extends StatefulWidget{
 
   DepartmentModel departmentModel;
 
   //default selection used for testing;
-  String selection = "Range1st";
+  String selection = "1st";
 
   HierarchyDrill(this.departmentModel);
 
@@ -35,7 +36,8 @@ class HierarchyDrillState extends State<HierarchyDrill>{
       appBar: AppBar(
         title: Center(child: Text("test", textAlign: TextAlign.center)),
       ),
-      body: MainHierarchy(this.departmentModel,this.selection),
+//      body: MainHierarchy(this.departmentModel,this.selection),
+      body: DepartmentView(this.departmentModel,this.selection),
 
     );
   }
