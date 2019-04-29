@@ -11,7 +11,7 @@ class HierarchyDrill extends StatefulWidget{
   DepartmentModel departmentModel;
 
   //default selection used for testing;
-  String selection = "1st";
+  String selection = "Other";
 
   HierarchyDrill(this.departmentModel);
 

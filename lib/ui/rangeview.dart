@@ -10,39 +10,36 @@ import 'package:markdowns/models/markdownstylemodel.dart';
 import 'package:markdowns/models/populateHierarchyModel.dart';
 import "package:collection/collection.dart";
 import 'package:flutter/foundation.dart';
-import 'package:markdowns/models/firstmarkdowndepartmentmodel.dart';
-import 'package:markdowns/models/otherdepartmentmodel.dart';
-import 'package:markdowns/models/threecdepartmentmodel.dart';
 import 'package:markdowns/models/firstmarkuprangemodel.dart';
 import 'package:markdowns/models/firstmarkupstylemodel.dart';
 import 'package:markdowns/models/threecrangemodel.dart';
 import 'package:markdowns/models/threecstylemodel.dart';
 import 'package:markdowns/models/otherrangemodel.dart';
 import 'package:markdowns/models/otherstylemodel.dart';
-import 'package:markdowns/ui/rangeview.dart';
-
-class CatagoryView extends StatefulWidget {
+import 'package:markdowns/ui/styleview.dart';
+class RangeView extends StatefulWidget {
 //  final List<TestModel> products;
   List<dynamic> selectionList = new List();
   String _selection = "";
   final DepartmentModel departmentModel;
   int selectionId = 0;
   //populates array with array past into constructor
-  CatagoryView(this.selectionList,this.departmentModel, this._selection,this.selectionId);
+  RangeView(this.selectionList,this.departmentModel, this._selection,this.selectionId);
 
   @override
-  State<StatefulWidget> createState() => CatagoryViewState(selectionList,departmentModel,_selection,selectionId);
+  State<StatefulWidget> createState() => RangeViewState(selectionList,departmentModel,_selection,selectionId);
 
 }
 
-class CatagoryViewState extends State<CatagoryView>{
+class RangeViewState extends State<RangeView>{
 
   final DepartmentModel departmentModel;
   int _currentIndex = 0;
   List<dynamic> selectionList = new List();
   int selectionId = 0;
+  List<dynamic> selectionRangeList = new List();
+
   String _selection = "";
-  List<dynamic> selectionCatList = new List();
 
   Map<String, String> details = {
     'Description': '',
@@ -56,22 +53,21 @@ class CatagoryViewState extends State<CatagoryView>{
   int listCount = 0;
   Widget BuilderToUse;
 
-  List<FirstMarkdownDepartmentModel> firstDeptMarkupList = new List();
-  List<ThreeCDepartmentModel> threeCDeptList = new List();
-  List<OtherDepartmentModel> otherDeptList = new List();
-
   List<FirstMarkdownCategoryModel> firstMarkupCatList = new List();
   List<ThreeCCategoryModel> threeCatList = new List();
   List<OtherCategoryModel> otherCatList = new List();
 
-  CatagoryViewState(this.selectionList,this.departmentModel, this._selection,this.selectionId);
+  List<FirstMarkupRangeModel> firstMarkupRangeList = new List();
+  List<ThreeCRangeModel> threeCRangeList = new List();
+  List<OtherRangeModel> otherRangeList = new List();
 
 
- /* //method shows elements in given list
+  RangeViewState(this.selectionList,this.departmentModel, this._selection,this.selectionId);
+
+  /* //method shows elements in given list
   void testArray(List<TestModel> listToTest) {
     listToTest.forEach((element) => print(element));
   }*/
-
 
   @override
   Widget build(BuildContext context) {
@@ -80,33 +76,28 @@ class CatagoryViewState extends State<CatagoryView>{
     String selectionListName = selectionList.runtimeType.toString();
 
     //todo : simulate the first selection to the others
-    if(selectionList.first is FirstMarkdownDepartmentModel){
+    if(selectionList.first is FirstMarkdownCategoryModel){
       for(int i = 0;i<selectionList.length;i++){
-        firstDeptMarkupList.add(selectionList[i]);
+        firstMarkupCatList.add(selectionList[i]);
       }
-      firstMarkupCatList = firstDeptMarkupList[selectionId].firstMarkdownCategoryList;
-      listCount = firstMarkupCatList.length;
-    }else if(selectionList.first is ThreeCDepartmentModel){
-        for(int i = 0;i<selectionList.length;i++){
-          threeCDeptList.add(selectionList[i]);
-        }
-        threeCatList = threeCDeptList[selectionId].threeCCategoryList;
-      listCount = threeCatList.length;
-    }else if(selectionList.first is OtherDepartmentModel){
-          for(int i = 0;i<selectionList.length;i++){
-            otherDeptList.add(selectionList[i]);
-          }
-      otherCatList = otherDeptList[selectionId].otherCategoryList;
-      listCount = otherCatList.length;
+      firstMarkupRangeList = firstMarkupCatList[selectionId].firstMarkupRangeModel;
+      listCount = firstMarkupRangeList.length;
+    }else if(selectionList.first is ThreeCCategoryModel){
+      for(int i = 0;i<selectionList.length;i++){
+       threeCatList.add(selectionList[i]);
+      }
+      threeCRangeList = threeCatList[selectionId].threeCRangeList;
+      listCount = threeCRangeList.length;
+    }else if(selectionList.first is OtherCategoryModel){
+      for(int i = 0;i<selectionList.length;i++){
+        otherCatList.add(selectionList[i]);
+      }
+      otherRangeList = otherCatList[selectionId].otherRangeModel;
+      listCount = otherRangeList.length;
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(subTitle, textAlign: TextAlign.center)
-      ,automaticallyImplyLeading: true,
-        leading: IconButton(icon:Icon(Icons.arrow_back),
-      onPressed:() => Navigator.pop(context, false),
-    ),
-      ),
+      appBar: AppBar(title: Text(subTitle, textAlign: TextAlign.center)),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
         currentIndex: _currentIndex,
@@ -132,7 +123,7 @@ class CatagoryViewState extends State<CatagoryView>{
                 selectionId = index;
                 Navigator.push(
                   context,
-                  new MaterialPageRoute(builder: (context) => RangeView(selectionCatList, departmentModel, _selection,selectionId)),
+                  new MaterialPageRoute(builder: (context) => StyleView(selectionRangeList, departmentModel, _selection,selectionId)),
                 );
               });
         },
@@ -143,19 +134,19 @@ class CatagoryViewState extends State<CatagoryView>{
   }
   Widget _buildProductItemFirst(BuildContext context, int index) {
 
-    details['Description'] = firstMarkupCatList[index].categoryNumber +
+    details['Description'] = firstMarkupRangeList[index].rangeNumber +
         " " +
-        firstMarkupCatList[index].categoryName;
+        firstMarkupRangeList[index].rangeName;
     details['Rollup'] =
-        firstMarkupCatList[index].rangeRollUp1stCurrentRetek.toString();
+    firstMarkupRangeList[index].styleRollUp1StCurrentRetek.toString();
     details['Found'] =
-        firstMarkupCatList[index].rangeRollUp1stFound.toString();
+    firstMarkupRangeList[index].styleRollUp1StFound.toString();
     details['Outstanding'] =
-        firstMarkupCatList[index].rangeRollUp1stOutstanding.toString();
+        firstMarkupRangeList[index].styleRolledUp1stOutstanding.toString();
     details['Sold'] =
-        firstMarkupCatList[index].rangeRolledUp1stSold.toString() + "?";
-    selectionCatList.add(firstMarkupCatList[index]);
-    
+        firstMarkupRangeList[index].styleRolledUp1stSold.toString() + "?";
+    selectionRangeList.add(firstMarkupRangeList[index]);
+
     return Card(
         child: Container(
           decoration: new BoxDecoration(
@@ -260,17 +251,18 @@ class CatagoryViewState extends State<CatagoryView>{
 
   Widget _buildProductItemThreeC(BuildContext context, int index) {
 
-    details['Description'] = threeCatList[index].categoryNumber +
+    details['Description'] = threeCRangeList[index].rangeNumber +
         " " +
-        threeCatList[index].categoryName;
+        threeCRangeList[index].rangeName;
     details['Rollup'] =
-        threeCatList[index].rangeRollUp3cCurrentRetek.toString();
-    details['Found'] = threeCatList[index].rangeRollUp3cFound.toString();
+    threeCRangeList[index].styleRollUp3CCurrentRetek.toString();
+    details['Found'] = threeCRangeList[index].styleRollUp3CFound.toString();
     details['Outstanding'] =
-        threeCatList[index].rangeRolledUp3cOutstanding.toString();
-    details['Sold'] = threeCatList[index].rangeRolledUpc3Sold.toString() + "?";
-    selectionCatList.add(threeCatList[index]);
+    threeCRangeList[index].styleRolledUp3cOutstanding.toString();
+    details['Sold'] = threeCRangeList[index].styleRolledUp3CSold.toString() + "?";
+    selectionRangeList.add(threeCRangeList[index]);
     print("Catagory3c case shown");
+
 
     return Card(
         child: Container(
@@ -376,17 +368,17 @@ class CatagoryViewState extends State<CatagoryView>{
 
   Widget _buildProductItemOther(BuildContext context, int index) {
 
-    details['Description'] = otherCatList[index].categoryNumber +
+    details['Description'] = otherRangeList[index].rangeNumber+
         " " +
-        otherCatList[index].categoryName;
+        otherRangeList[index].rangeName;
     details['Rollup'] =
-        otherCatList[index].rangeRollOtherCurrentRetek.toString();
-    details['Found'] = otherCatList[index].rangeRollUpOtherFound.toString();
+        otherRangeList[index].styleRollUpOtherCurrentRetek.toString();
+    details['Found'] = otherRangeList[index].styleRollUpOtherFound.toString();
     details['Outstanding'] =
-        otherCatList[index].rangeRolledOtherOutstanding.toString();
+        otherRangeList[index].styleRolledUpOtherOutstanding.toString();
     details['Sold'] =
-        otherCatList[index].rangeRolledUpOtherSold.toString() + "?";
-    selectionCatList.add(otherCatList[index]);
+        otherRangeList[index].styleRolledUpOtherSold.toString() + "?";
+    selectionRangeList.add(otherRangeList[index]);
     print("CategryOther case shown");
 
     return Card(
@@ -517,6 +509,5 @@ class CatagoryViewState extends State<CatagoryView>{
       _currentIndex = index;
     });
   }
-
 
 }

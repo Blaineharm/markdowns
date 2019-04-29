@@ -55,7 +55,7 @@ class DepartmentView extends StatelessWidget {
   List<ThreeCStyleModel> threeStyleList = new List();
   List<OtherStyleModel> otherStyleList = new List();
 
-  //populates array with array past into constructor
+  //passes department model and selection from hierarchyDrill class
   DepartmentView(this.departmentModel, this._selection);
 
   //method shows elements in given list

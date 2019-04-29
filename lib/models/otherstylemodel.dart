@@ -11,6 +11,13 @@ class OtherStyleModel {
   int _soldAmount = 0;
   String _styleDescription = "";
   String _styleNumber = "";
+  int _outstanding = 0;
+
+  int get outstanding => _outstanding;
+
+  set outstanding(int value) {
+    _outstanding = value;
+  }
 
   double get currentPrice => _currentPrice;
 
