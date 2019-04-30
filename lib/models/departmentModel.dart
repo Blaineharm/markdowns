@@ -34,7 +34,7 @@ class DepartmentModel {
   String _departmentNumber = "";
 
   List<FirstMarkdownDepartmentModel> _firstMarkdownDepratmentModelList =
-      new List();
+  new List();
   List<ThreeCDepartmentModel> _threeCDepartmentModel = new List();
   List<OtherDepartmentModel> _otherDepartmentModel = new List();
   List<FirstMarkdownCategoryModel> _firstMarkdownCategoryList = new List();
@@ -79,7 +79,7 @@ class DepartmentModel {
     for (Department department in p.departments) {
       //create new department object and add to departmentModel list
       FirstMarkdownDepartmentModel firstMarkdownDepartmentModel =
-          new FirstMarkdownDepartmentModel();
+      new FirstMarkdownDepartmentModel();
       ThreeCDepartmentModel threeCDepartmentModel = new ThreeCDepartmentModel();
       OtherDepartmentModel otherDepartmentModel = new OtherDepartmentModel();
 
@@ -142,126 +142,148 @@ class DepartmentModel {
           otherDepartmentModel.SoldOther,
           otherDepartmentModel.otherFound);
 
-     //general check to see if 1st is not 0
+      //general check to see if 1st is not 0
       if (department.categoryRollUp1StInitialRetek != 0) {
 
         //1st and 3c
         if (department.categoryRollUp3CInitialRetek != 0 &&
             department.categoryRollUpOtherInitialRetek == 0) {
           for (Category category in department.categories) {
-            FirstMarkdownCategoryModel firstMarkdownCategoryModel =
-                new FirstMarkdownCategoryModel(
-                    category.categoryName,
-                    category.categoryName,
-                    category.rangeRollUp1StCurrentRetek,
-                    category.rangeRollUp1StFound,
-                    category.rangeRollUp1StInitialRetek);
-            firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
-                firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
-            firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
-                calculateOutstanding(
-                    firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                    firstMarkdownCategoryModel.rangeRolledUp1stSold,
-                    firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            firstMarkdownDepartmentModel.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+            //1st
+            if(category.rangeRollUp1StInitialRetek!=0) {
+              FirstMarkdownCategoryModel firstMarkdownCategoryModel =
+              new FirstMarkdownCategoryModel(
+                  category.categoryName,
+                  category.categoryName,
+                  category.rangeRollUp1StCurrentRetek,
+                  category.rangeRollUp1StFound,
+                  category.rangeRollUp1StInitialRetek);
+              firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
+                  firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                  firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
+              firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
+                  calculateOutstanding(
+                      firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                      firstMarkdownCategoryModel.rangeRolledUp1stSold,
+                      firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
-            threeCCategoryModel.categoryName = category.categoryName;
-            threeCCategoryModel.rangeRollUp3cCurrentRetek =
-                category.rangeRollUp3CCurrentRetek;
-            threeCCategoryModel.rangeRollUp3cinitialRetek =
-                category.rangeRollUp3CInitialRetek;
-            threeCCategoryModel.rangeRollUp3cFound =
-                category.rangeRollUp3CFound;
-            threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
-                threeCCategoryModel.rangeRollUp3cinitialRetek,
-                threeCCategoryModel.rangeRollUp3cCurrentRetek);
-            threeCCategoryModel.rangeRolledUp3cOutstanding =
-                calculateOutstanding(
-                    threeCCategoryModel.rangeRollUp3cinitialRetek,
-                    threeCCategoryModel.rangeRolledUpc3Sold,
-                    threeCCategoryModel.rangeRollUp3cFound);
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList
+                  .add(firstMarkdownCategoryModel);
+            }
 
-            threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+            //3c
+            if(category.rangeRollUp3CInitialRetek!=0) {
+              ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
+              threeCCategoryModel.categoryName = category.categoryName;
+              threeCCategoryModel.rangeRollUp3cCurrentRetek =
+                  category.rangeRollUp3CCurrentRetek;
+              threeCCategoryModel.rangeRollUp3cinitialRetek =
+                  category.rangeRollUp3CInitialRetek;
+              threeCCategoryModel.rangeRollUp3cFound =
+                  category.rangeRollUp3CFound;
+              threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
+                  threeCCategoryModel.rangeRollUp3cinitialRetek,
+                  threeCCategoryModel.rangeRollUp3cCurrentRetek);
+              threeCCategoryModel.rangeRolledUp3cOutstanding =
+                  calculateOutstanding(
+                      threeCCategoryModel.rangeRollUp3cinitialRetek,
+                      threeCCategoryModel.rangeRolledUpc3Sold,
+                      threeCCategoryModel.rangeRollUp3cFound);
+              threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+            }
 
             for (Range range in category.ranges) {
-              FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
-              ThreeCRangeModel range3c = new ThreeCRangeModel();
 
               //1st
-              range1st.rangeName = range.rangeName;
-              range1st.rangeNumber = range.rangeNumber;
-              range1st.styleRollUp1StCurrentRetek =
-                  range.styleRollUp1StCurrentRetek;
-              range1st.styleRollUp1StInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              range1st.styleRollUp1StFound = calcSold(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRollUp1StCurrentRetek);
-              range1st.styleRolledUp1stOutstanding = calculateOutstanding(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRolledUp1stSold,
-                  range1st.styleRollUp1StFound);
+              if(range.styleRollUp1StInitialRetek!=0) {
+                FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
+                range1st.rangeName = range.rangeName;
+                range1st.rangeNumber = range.rangeNumber;
+                range1st.styleRollUp1StCurrentRetek =
+                    range.styleRollUp1StCurrentRetek;
+                range1st.styleRollUp1StInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+                range1st.styleRollUp1StFound = calcSold(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRollUp1StCurrentRetek);
+                range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRolledUp1stSold,
+                    range1st.styleRollUp1StFound);
+                firstMarkdownDepartmentModel
+                    .firstMarkdownCategoryList.last.firstMarkupRangeModel
+                    .add(range1st);
+              }
 
               //c3
-              range3c.rangeName = range.rangeName;
-              range3c.rangeNumber = range.rangeNumber;
-              range3c.styleRollUp3CCurrentRetek =
-                  range.styleRollUp3CCurrentRetek;
-              range3c.styleRollUp3CInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range3c.styleRollUp3CFound = range.styleRollUp3CFound;
-              range3c.styleRolledUp3CSold = calcSold(
-                  range3c.styleRollUp3CInitialRetek,
-                  range3c.styleRollUp3CCurrentRetek);
-              range3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                  range3c.styleRollUp3CInitialRetek,
-                  range3c.styleRolledUp3CSold,
-                  range3c.styleRollUp3CFound);
-
-              firstMarkdownDepartmentModel
-                  .firstMarkdownCategoryList.first.firstMarkupRangeModel
-                  .add(range1st);
-              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                  .add(range3c);
+              if(range.styleRollUp3CInitialRetek!=0) {
+                ThreeCRangeModel range3c = new ThreeCRangeModel();
+                range3c.rangeName = range.rangeName;
+                range3c.rangeNumber = range.rangeNumber;
+                range3c.styleRollUp3CCurrentRetek =
+                    range.styleRollUp3CCurrentRetek;
+                range3c.styleRollUp3CInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+                range3c.styleRolledUp3CSold = calcSold(
+                    range3c.styleRollUp3CInitialRetek,
+                    range3c.styleRollUp3CCurrentRetek);
+                range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                    range3c.styleRollUp3CInitialRetek,
+                    range3c.styleRolledUp3CSold,
+                    range3c.styleRollUp3CFound);
+                threeCDepartmentModel.threeCCategoryList.last.threeCRangeList
+                    .add(range3c);
+              }
 
               for (Style style in range.styles) {
-                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
-                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
 
-                firstStyle.currentPrice = style.currentPrice;
-                firstStyle.currentRetekAmount = style.currentRetekAmount;
-                firstStyle.foundAmount = style.foundAmount;
-                firstStyle.initialPrice = style.initialPrice;
-                firstStyle.initialRetekAmount = style.initialRetekAmount;
-                firstStyle.is3C = style.is3C;
-                firstStyle.styleDescription = style.styleDescription;
-                firstStyle.styleNumber = style.styleNumber;
-                firstStyle.soldAmount = calcSold(firstStyle.initialRetekAmount, firstStyle.currentRetekAmount);
-                firstStyle.outstanding = calculateOutstanding(firstStyle.initialRetekAmount, firstStyle.soldAmount,firstStyle.foundAmount);
+                //1st
+                if(range.styleRollUp1StInitialRetek!=0) {
+                  FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                  firstStyle.currentPrice = style.currentPrice;
+                  firstStyle.currentRetekAmount = style.currentRetekAmount;
+                  firstStyle.foundAmount = style.foundAmount;
+                  firstStyle.initialPrice = style.initialPrice;
+                  firstStyle.initialRetekAmount = style.initialRetekAmount;
+                  firstStyle.is3C = style.is3C;
+                  firstStyle.styleDescription = style.styleDescription;
+                  firstStyle.styleNumber = style.styleNumber;
+                  firstStyle.soldAmount = calcSold(
+                      firstStyle.initialRetekAmount,
+                      firstStyle.currentRetekAmount);
+                  firstStyle.outstanding = calculateOutstanding(
+                      firstStyle.initialRetekAmount, firstStyle.soldAmount,
+                      firstStyle.foundAmount);
+                  firstMarkdownDepartmentModel.firstMarkdownCategoryList.last
+                      .firstMarkupRangeModel.last.firstMarkupStyleList
+                      .add(firstStyle);
+                }
 
+                //3c
+                if(range.styleRollUp3CInitialRetek!=0) {
+                  ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+                  threeCStyle.currentPrice = style.currentPrice;
+                  threeCStyle.currentRetekAmount = style.currentRetekAmount;
+                  threeCStyle.foundAmount = style.foundAmount;
+                  threeCStyle.initialPrice = style.initialPrice;
+                  threeCStyle.initialRetekAmount = style.initialRetekAmount;
+                  threeCStyle.is3C = style.is3C;
+                  threeCStyle.styleDescription = style.styleDescription;
+                  threeCStyle.styleNumber = style.styleNumber;
+                  threeCStyle.soldAmount = calcSold(
+                      threeCStyle.initialRetekAmount,
+                      threeCStyle.currentRetekAmount);
+                  threeCStyle.outstanding = calculateOutstanding(
+                      threeCStyle.initialRetekAmount, threeCStyle.soldAmount,
+                      threeCStyle.foundAmount);
+                  threeCDepartmentModel.threeCCategoryList.last.threeCRangeList
+                      .last.threeCStyleModelList
+                      .add(threeCStyle);
+                }
 
-                threeCStyle.currentPrice = style.currentPrice;
-                threeCStyle.currentRetekAmount = style.currentRetekAmount;
-                threeCStyle.foundAmount = style.foundAmount;
-                threeCStyle.initialPrice = style.initialPrice;
-                threeCStyle.initialRetekAmount = style.initialRetekAmount;
-                threeCStyle.is3C = style.is3C;
-                threeCStyle.styleDescription = style.styleDescription;
-                threeCStyle.styleNumber = style.styleNumber;
-                threeCStyle.soldAmount = calcSold(threeCStyle.initialRetekAmount, threeCStyle.currentRetekAmount);
-                threeCStyle.outstanding = calculateOutstanding(threeCStyle.initialRetekAmount, threeCStyle.soldAmount,threeCStyle.foundAmount);
-
-                firstMarkdownDepartmentModel.firstMarkdownCategoryList.first
-                    .firstMarkupRangeModel.first.firstMarkupStyleList
-                    .add(firstStyle);
-                threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                    .first.threeCStyleModelList
-                    .add(threeCStyle);
               } //style for each
 
             } //ranges for each
@@ -272,122 +294,142 @@ class DepartmentModel {
         } else if (department.categoryRollUpOtherCurrentRetek != 0 &&
             department.categoryRollUp3CInitialRetek == 0) {
           for (Category category in department.categories) {
-            FirstMarkdownCategoryModel firstMarkdownCategoryModel =
-                new FirstMarkdownCategoryModel(
-                    category.categoryName,
-                    category.categoryName,
-                    category.rangeRollUp1StCurrentRetek,
-                    category.rangeRollUp1StFound,
-                    category.rangeRollUp1StInitialRetek);
-            firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
-                firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
-            firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
-                calculateOutstanding(
-                    firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                    firstMarkdownCategoryModel.rangeRolledUp1stSold,
-                    firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            firstMarkdownDepartmentModel.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+            //1st
+            if(category.rangeRollUp1StInitialRetek!=0) {
+              FirstMarkdownCategoryModel firstMarkdownCategoryModel =
+              new FirstMarkdownCategoryModel(
+                  category.categoryName,
+                  category.categoryName,
+                  category.rangeRollUp1StCurrentRetek,
+                  category.rangeRollUp1StFound,
+                  category.rangeRollUp1StInitialRetek);
+              firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
+                  firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                  firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
+              firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
+                  calculateOutstanding(
+                      firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                      firstMarkdownCategoryModel.rangeRolledUp1stSold,
+                      firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
-            otherCategoryModel.categoryName = category.categoryName;
-            otherCategoryModel.categoryNumber = category.categoryNumber;
-            otherCategoryModel.rangeRollOtherCurrentRetek =
-                category.rangeRollUpOtherCurrentRetek;
-            otherCategoryModel.rangeRollUpOtherinitialRetek =
-                category.rangeRollUpOtherInitialRetek;
-            otherCategoryModel.rangeRollUpOtherFound =
-                category.rangeRollUpOtherFound;
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList
+                  .add(firstMarkdownCategoryModel);
+            }
 
-            otherCategoryModel.rangeRolledUpOtherSold = calcSold(
-                otherCategoryModel.rangeRollUpOtherinitialRetek,
-                otherCategoryModel.rangeRollOtherCurrentRetek);
-            otherCategoryModel.rangeRolledOtherOutstanding =
-                calculateOutstanding(
-                    otherCategoryModel.rangeRollOtherCurrentRetek,
-                    otherCategoryModel.rangeRolledUpOtherSold,
-                    otherCategoryModel.rangeRollUpOtherFound);
+            //other
+            if(category.rangeRollUpOtherInitialRetek!=0) {
+              OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
+              otherCategoryModel.categoryName = category.categoryName;
+              otherCategoryModel.categoryNumber = category.categoryNumber;
+              otherCategoryModel.rangeRollOtherCurrentRetek =
+                  category.rangeRollUpOtherCurrentRetek;
+              otherCategoryModel.rangeRollUpOtherinitialRetek =
+                  category.rangeRollUpOtherInitialRetek;
+              otherCategoryModel.rangeRollUpOtherFound =
+                  category.rangeRollUpOtherFound;
 
-            otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+              otherCategoryModel.rangeRolledUpOtherSold = calcSold(
+                  otherCategoryModel.rangeRollUpOtherinitialRetek,
+                  otherCategoryModel.rangeRollOtherCurrentRetek);
+              otherCategoryModel.rangeRolledOtherOutstanding =
+                  calculateOutstanding(
+                      otherCategoryModel.rangeRollOtherCurrentRetek,
+                      otherCategoryModel.rangeRolledUpOtherSold,
+                      otherCategoryModel.rangeRollUpOtherFound);
+
+              otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+            }
 
             for (Range range in category.ranges) {
-              FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
-              OtherRangeModel rangeOther = new OtherRangeModel();
 
               //1st
-              range1st.rangeName = range.rangeName;
-              range1st.rangeNumber = range.rangeNumber;
-              range1st.styleRollUp1StCurrentRetek =
-                  range.styleRollUp1StCurrentRetek;
-              range1st.styleRollUp1StInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              range1st.styleRollUp1StFound = calcSold(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRollUp1StCurrentRetek);
-              range1st.styleRolledUp1stOutstanding = calculateOutstanding(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRolledUp1stSold,
-                  range1st.styleRollUp1StFound);
+              if(range.styleRollUp1StInitialRetek!=0) {
+                FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
+                range1st.rangeName = range.rangeName;
+                range1st.rangeNumber = range.rangeNumber;
+                range1st.styleRollUp1StCurrentRetek =
+                    range.styleRollUp1StCurrentRetek;
+                range1st.styleRollUp1StInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+                range1st.styleRollUp1StFound = calcSold(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRollUp1StCurrentRetek);
+                range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRolledUp1stSold,
+                    range1st.styleRollUp1StFound);
+                firstMarkdownDepartmentModel
+                    .firstMarkdownCategoryList.last.firstMarkupRangeModel
+                    .add(range1st);
+              }
 
               //other
-              rangeOther.rangeName = range.rangeName;
-              rangeOther.rangeNumber = range.rangeNumber;
-              rangeOther.styleRollUpOtherCurrentRetek =
-                  range.styleRollUpOtherCurrentRetek;
-              rangeOther.styleRollUpOtherInitialRetek =
-                  range.styleRollUpOtherInitialRetek;
-              rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
-              rangeOther.styleRolledUpOtherSold = calcSold(
-                  rangeOther.styleRollUpOtherInitialRetek,
-                  rangeOther.styleRollUpOtherCurrentRetek);
-              rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
-                  rangeOther.styleRollUpOtherInitialRetek,
-                  rangeOther.styleRolledUpOtherSold,
-                  rangeOther.styleRollUpOtherFound);
-
-              firstMarkdownDepartmentModel
-                  .firstMarkdownCategoryList.first.firstMarkupRangeModel
-                  .add(range1st);
-              otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                  .add(rangeOther);
+              if(range.styleRollUpOtherInitialRetek!=0) {
+                OtherRangeModel rangeOther = new OtherRangeModel();
+                rangeOther.rangeName = range.rangeName;
+                rangeOther.rangeNumber = range.rangeNumber;
+                rangeOther.styleRollUpOtherCurrentRetek =
+                    range.styleRollUpOtherCurrentRetek;
+                rangeOther.styleRollUpOtherInitialRetek =
+                    range.styleRollUpOtherInitialRetek;
+                rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
+                rangeOther.styleRolledUpOtherSold = calcSold(
+                    rangeOther.styleRollUpOtherInitialRetek,
+                    rangeOther.styleRollUpOtherCurrentRetek);
+                rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
+                    rangeOther.styleRollUpOtherInitialRetek,
+                    rangeOther.styleRolledUpOtherSold,
+                    rangeOther.styleRollUpOtherFound);
+                otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                    .add(rangeOther);
+              }
 
               for (Style style in range.styles) {
-                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
-                OtherStyleModel otherStyle = new OtherStyleModel();
+                //1st
+                if(range.styleRollUp1StInitialRetek!=0) {
+                  FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                  firstStyle.currentPrice = style.currentPrice;
+                  firstStyle.currentRetekAmount = style.currentRetekAmount;
+                  firstStyle.foundAmount = style.foundAmount;
+                  firstStyle.initialPrice = style.initialPrice;
+                  firstStyle.initialRetekAmount = style.initialRetekAmount;
+                  firstStyle.is3C = style.is3C;
+                  firstStyle.styleDescription = style.styleDescription;
+                  firstStyle.styleNumber = style.styleNumber;
+                  firstStyle.soldAmount = calcSold(
+                      firstStyle.initialRetekAmount,
+                      firstStyle.currentRetekAmount);
+                  firstStyle.outstanding = calculateOutstanding(
+                      firstStyle.initialRetekAmount, firstStyle.soldAmount,
+                      firstStyle.foundAmount);
+                  firstMarkdownDepartmentModel.firstMarkdownCategoryList.last
+                      .firstMarkupRangeModel.last.firstMarkupStyleList
+                      .add(firstStyle);
 
-                firstStyle.currentPrice = style.currentPrice;
-                firstStyle.currentRetekAmount = style.currentRetekAmount;
-                firstStyle.foundAmount = style.foundAmount;
-                firstStyle.initialPrice = style.initialPrice;
-                firstStyle.initialRetekAmount = style.initialRetekAmount;
-                firstStyle.is3C = style.is3C;
-                firstStyle.styleDescription = style.styleDescription;
-                firstStyle.styleNumber = style.styleNumber;
-                firstStyle.soldAmount = calcSold(firstStyle.initialRetekAmount, firstStyle.currentRetekAmount);
-                firstStyle.outstanding = calculateOutstanding(firstStyle.initialRetekAmount, firstStyle.soldAmount,firstStyle.foundAmount);
-
-                otherStyle.currentPrice = style.currentPrice;
-                otherStyle.currentRetekAmount = style.currentRetekAmount;
-                otherStyle.foundAmount = style.foundAmount;
-                otherStyle.initialPrice = style.initialPrice;
-                otherStyle.initialRetekAmount = style.initialRetekAmount;
-                otherStyle.is3C = style.is3C;
-                otherStyle.styleDescription = style.styleDescription;
-                otherStyle.styleNumber = style.styleNumber;
-                otherStyle.soldAmount = calcSold(otherStyle.initialRetekAmount, otherStyle.currentRetekAmount);
-                otherStyle.outstanding = calculateOutstanding(otherStyle.initialRetekAmount, otherStyle.soldAmount,otherStyle.foundAmount);
-
-
-
-                firstMarkdownDepartmentModel.firstMarkdownCategoryList.first
-                    .firstMarkupRangeModel.first.firstMarkupStyleList
-                    .add(firstStyle);
-                otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                    .first.otherStyleModelList
-                    .add(otherStyle);
+                }
+                //other
+                if(range.styleRollUpOtherInitialRetek!=0){
+                  OtherStyleModel otherStyle = new OtherStyleModel();
+                  otherStyle.currentPrice = style.currentPrice;
+                  otherStyle.currentRetekAmount = style.currentRetekAmount;
+                  otherStyle.foundAmount = style.foundAmount;
+                  otherStyle.initialPrice = style.initialPrice;
+                  otherStyle.initialRetekAmount = style.initialRetekAmount;
+                  otherStyle.is3C = style.is3C;
+                  otherStyle.styleDescription = style.styleDescription;
+                  otherStyle.styleNumber = style.styleNumber;
+                  otherStyle.soldAmount = calcSold(
+                      otherStyle.initialRetekAmount,
+                      otherStyle.currentRetekAmount);
+                  otherStyle.outstanding = calculateOutstanding(
+                      otherStyle.initialRetekAmount, otherStyle.soldAmount,
+                      otherStyle.foundAmount);
+                  otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                      .last.otherStyleModelList
+                      .add(otherStyle);
+                }
               } //style for each
 
             } //ranges for each
@@ -398,66 +440,77 @@ class DepartmentModel {
         } else if (department.categoryRollUp3CInitialRetek == 0 &&
             department.categoryRollUpOtherInitialRetek == 0) {
           for (Category category in department.categories) {
-            FirstMarkdownCategoryModel firstMarkdownCategoryModel =
-                new FirstMarkdownCategoryModel(
-                    category.categoryName,
-                    category.categoryName,
-                    category.rangeRollUp1StCurrentRetek,
-                    category.rangeRollUp1StFound,
-                    category.rangeRollUp1StInitialRetek);
-            firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
-                firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
-            firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
-                calculateOutstanding(
-                    firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                    firstMarkdownCategoryModel.rangeRolledUp1stSold,
-                    firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            firstMarkdownDepartmentModel.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+            //1st
+            if(category.rangeRollUp1StInitialRetek!=0) {
+              FirstMarkdownCategoryModel firstMarkdownCategoryModel =
+              new FirstMarkdownCategoryModel(
+                  category.categoryName,
+                  category.categoryName,
+                  category.rangeRollUp1StCurrentRetek,
+                  category.rangeRollUp1StFound,
+                  category.rangeRollUp1StInitialRetek);
+              firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
+                  firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                  firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
+              firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
+                  calculateOutstanding(
+                      firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                      firstMarkdownCategoryModel.rangeRolledUp1stSold,
+                      firstMarkdownCategoryModel.rangeRollUp1stFound);
+
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList
+                  .add(firstMarkdownCategoryModel);
+            }
 
             for (Range range in category.ranges) {
-              FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
 
               //1st range
-              range1st.rangeName = range.rangeName;
-              range1st.rangeNumber = range.rangeNumber;
-              range1st.styleRollUp1StCurrentRetek =
-                  range.styleRollUp1StCurrentRetek;
-              range1st.styleRollUp1StInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              range1st.styleRollUp1StFound = calcSold(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRollUp1StCurrentRetek);
-              range1st.styleRolledUp1stOutstanding = calculateOutstanding(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRolledUp1stSold,
-                  range1st.styleRollUp1StFound);
-
-              firstMarkdownDepartmentModel
-                  .firstMarkdownCategoryList.first.firstMarkupRangeModel
-                  .add(range1st);
+              if(range.styleRollUp1StInitialRetek!=0) {
+                FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
+                range1st.rangeName = range.rangeName;
+                range1st.rangeNumber = range.rangeNumber;
+                range1st.styleRollUp1StCurrentRetek =
+                    range.styleRollUp1StCurrentRetek;
+                range1st.styleRollUp1StInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+                range1st.styleRollUp1StFound = calcSold(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRollUp1StCurrentRetek);
+                range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRolledUp1stSold,
+                    range1st.styleRollUp1StFound);
+                firstMarkdownDepartmentModel
+                    .firstMarkdownCategoryList.last.firstMarkupRangeModel
+                    .add(range1st);
+              }
 
               for (Style style in range.styles) {
-                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
 
                 //1st style
-                firstStyle.currentPrice = style.currentPrice;
-                firstStyle.currentRetekAmount = style.currentRetekAmount;
-                firstStyle.foundAmount = style.foundAmount;
-                firstStyle.initialPrice = style.initialPrice;
-                firstStyle.initialRetekAmount = style.initialRetekAmount;
-                firstStyle.is3C = style.is3C;
-                firstStyle.styleDescription = style.styleDescription;
-                firstStyle.styleNumber = style.styleNumber;
-                firstStyle.soldAmount = calcSold(firstStyle.initialRetekAmount, firstStyle.currentRetekAmount);
-                firstStyle.outstanding = calculateOutstanding(firstStyle.initialRetekAmount, firstStyle.soldAmount,firstStyle.foundAmount);
+                if(range.styleRollUp1StInitialRetek!=0) {
+                  FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                  firstStyle.currentPrice = style.currentPrice;
+                  firstStyle.currentRetekAmount = style.currentRetekAmount;
+                  firstStyle.foundAmount = style.foundAmount;
+                  firstStyle.initialPrice = style.initialPrice;
+                  firstStyle.initialRetekAmount = style.initialRetekAmount;
+                  firstStyle.is3C = style.is3C;
+                  firstStyle.styleDescription = style.styleDescription;
+                  firstStyle.styleNumber = style.styleNumber;
+                  firstStyle.soldAmount = calcSold(
+                      firstStyle.initialRetekAmount,
+                      firstStyle.currentRetekAmount);
+                  firstStyle.outstanding = calculateOutstanding(
+                      firstStyle.initialRetekAmount, firstStyle.soldAmount,
+                      firstStyle.foundAmount);
 
-                firstMarkdownDepartmentModel.firstMarkdownCategoryList.first
-                    .firstMarkupRangeModel.first.firstMarkupStyleList
-                    .add(firstStyle);
+                  firstMarkdownDepartmentModel.firstMarkdownCategoryList.last
+                      .firstMarkupRangeModel.last.firstMarkupStyleList
+                      .add(firstStyle);
+                }
               } //style for each
 
             } //ranges for each
@@ -468,177 +521,209 @@ class DepartmentModel {
         } else if (department.categoryRollUp3CInitialRetek != 0 &&
             department.categoryRollUpOtherInitialRetek != 0) {
           for (Category category in department.categories) {
-            FirstMarkdownCategoryModel firstMarkdownCategoryModel =
-                new FirstMarkdownCategoryModel(
-                    category.categoryName,
-                    category.categoryName,
-                    category.rangeRollUp1StCurrentRetek,
-                    category.rangeRollUp1StFound,
-                    category.rangeRollUp1StInitialRetek);
-            firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
-                firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
-            firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
-                calculateOutstanding(
-                    firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
-                    firstMarkdownCategoryModel.rangeRolledUp1stSold,
-                    firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            firstMarkdownDepartmentModel.firstMarkdownCategoryList
-                .add(firstMarkdownCategoryModel);
+            //1st
+            if(category.rangeRollUp1StInitialRetek!=0) {
+              FirstMarkdownCategoryModel firstMarkdownCategoryModel =
+              new FirstMarkdownCategoryModel(
+                  category.categoryName,
+                  category.categoryName,
+                  category.rangeRollUp1StCurrentRetek,
+                  category.rangeRollUp1StFound,
+                  category.rangeRollUp1StInitialRetek);
+              firstMarkdownCategoryModel.rangeRolledUp1stSold = calcSold(
+                  firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                  firstMarkdownCategoryModel.rangeRollUp1stCurrentRetek);
+              firstMarkdownCategoryModel.rangeRollUp1stOutstanding =
+                  calculateOutstanding(
+                      firstMarkdownCategoryModel.rangeRollUp1stinitialRetek,
+                      firstMarkdownCategoryModel.rangeRolledUp1stSold,
+                      firstMarkdownCategoryModel.rangeRollUp1stFound);
 
-            ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
-            threeCCategoryModel.categoryName = category.categoryName;
-            threeCCategoryModel.rangeRollUp3cCurrentRetek =
-                category.rangeRollUp3CCurrentRetek;
-            threeCCategoryModel.rangeRollUp3cinitialRetek =
-                category.rangeRollUp3CInitialRetek;
-            threeCCategoryModel.rangeRollUp3cFound =
-                category.rangeRollUp3CFound;
-            threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
-                threeCCategoryModel.rangeRollUp3cinitialRetek,
-                threeCCategoryModel.rangeRollUp3cCurrentRetek);
-            threeCCategoryModel.rangeRolledUp3cOutstanding =
-                calculateOutstanding(
-                    threeCCategoryModel.rangeRollUp3cinitialRetek,
-                    threeCCategoryModel.rangeRolledUpc3Sold,
-                    threeCCategoryModel.rangeRollUp3cFound);
+              firstMarkdownDepartmentModel.firstMarkdownCategoryList
+                  .add(firstMarkdownCategoryModel);
+            }
 
-            threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+            //3c
+            if(category.rangeRollUp3CInitialRetek!=0) {
+              ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
+              threeCCategoryModel.categoryName = category.categoryName;
+              threeCCategoryModel.rangeRollUp3cCurrentRetek =
+                  category.rangeRollUp3CCurrentRetek;
+              threeCCategoryModel.rangeRollUp3cinitialRetek =
+                  category.rangeRollUp3CInitialRetek;
+              threeCCategoryModel.rangeRollUp3cFound =
+                  category.rangeRollUp3CFound;
+              threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
+                  threeCCategoryModel.rangeRollUp3cinitialRetek,
+                  threeCCategoryModel.rangeRollUp3cCurrentRetek);
+              threeCCategoryModel.rangeRolledUp3cOutstanding =
+                  calculateOutstanding(
+                      threeCCategoryModel.rangeRollUp3cinitialRetek,
+                      threeCCategoryModel.rangeRolledUpc3Sold,
+                      threeCCategoryModel.rangeRollUp3cFound);
+              threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+            }
 
-            OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
-            otherCategoryModel.categoryName = category.categoryName;
-            otherCategoryModel.categoryNumber = category.categoryNumber;
-            otherCategoryModel.rangeRollOtherCurrentRetek =
-                category.rangeRollUpOtherCurrentRetek;
-            otherCategoryModel.rangeRollUpOtherinitialRetek =
-                category.rangeRollUpOtherInitialRetek;
-            otherCategoryModel.rangeRollUpOtherFound =
-                category.rangeRollUpOtherFound;
-
-            otherCategoryModel.rangeRolledUpOtherSold = calcSold(
-                otherCategoryModel.rangeRollUpOtherinitialRetek,
-                otherCategoryModel.rangeRollOtherCurrentRetek);
-            otherCategoryModel.rangeRolledOtherOutstanding =
-                calculateOutstanding(
-                    otherCategoryModel.rangeRollOtherCurrentRetek,
-                    otherCategoryModel.rangeRolledUpOtherSold,
-                    otherCategoryModel.rangeRollUpOtherFound);
-
-            otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+            //other
+            if(category.rangeRollUpOtherInitialRetek!=0) {
+              OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
+              otherCategoryModel.categoryName = category.categoryName;
+              otherCategoryModel.categoryNumber = category.categoryNumber;
+              otherCategoryModel.rangeRollOtherCurrentRetek =
+                  category.rangeRollUpOtherCurrentRetek;
+              otherCategoryModel.rangeRollUpOtherinitialRetek =
+                  category.rangeRollUpOtherInitialRetek;
+              otherCategoryModel.rangeRollUpOtherFound =
+                  category.rangeRollUpOtherFound;
+              otherCategoryModel.rangeRolledUpOtherSold = calcSold(
+                  otherCategoryModel.rangeRollUpOtherinitialRetek,
+                  otherCategoryModel.rangeRollOtherCurrentRetek);
+              otherCategoryModel.rangeRolledOtherOutstanding =
+                  calculateOutstanding(
+                      otherCategoryModel.rangeRollOtherCurrentRetek,
+                      otherCategoryModel.rangeRolledUpOtherSold,
+                      otherCategoryModel.rangeRollUpOtherFound);
+              otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+            }
 
             for (Range range in category.ranges) {
-              FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
-              OtherRangeModel rangeOther = new OtherRangeModel();
-              ThreeCRangeModel range3c = new ThreeCRangeModel();
 
               //1st range
-              range1st.rangeName = range.rangeName;
-              range1st.rangeNumber = range.rangeNumber;
-              range1st.styleRollUp1StCurrentRetek =
-                  range.styleRollUp1StCurrentRetek;
-              range1st.styleRollUp1StInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range1st.styleRollUp1StFound = range.styleRollUp1StFound;
-              range1st.styleRollUp1StFound = calcSold(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRollUp1StCurrentRetek);
-              range1st.styleRolledUp1stOutstanding = calculateOutstanding(
-                  range1st.styleRollUp1StInitialRetek,
-                  range1st.styleRolledUp1stSold,
-                  range1st.styleRollUp1StFound);
+              if(range.styleRollUp1StInitialRetek!=0) {
+                FirstMarkupRangeModel range1st = new FirstMarkupRangeModel();
+                range1st.rangeName = range.rangeName;
+                range1st.rangeNumber = range.rangeNumber;
+                range1st.styleRollUp1StCurrentRetek =
+                    range.styleRollUp1StCurrentRetek;
+                range1st.styleRollUp1StInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range1st.styleRollUp1StFound = range.styleRollUp1StFound;
+                range1st.styleRollUp1StFound = calcSold(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRollUp1StCurrentRetek);
+                range1st.styleRolledUp1stOutstanding = calculateOutstanding(
+                    range1st.styleRollUp1StInitialRetek,
+                    range1st.styleRolledUp1stSold,
+                    range1st.styleRollUp1StFound);
+                firstMarkdownDepartmentModel
+                    .firstMarkdownCategoryList.last.firstMarkupRangeModel
+                    .add(range1st);
+              }
 
               //other range
-              rangeOther.rangeName = range.rangeName;
-              rangeOther.rangeNumber = range.rangeNumber;
-              rangeOther.styleRollUpOtherCurrentRetek =
-                  range.styleRollUpOtherCurrentRetek;
-              rangeOther.styleRollUpOtherInitialRetek =
-                  range.styleRollUpOtherInitialRetek;
-              rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
-              rangeOther.styleRolledUpOtherSold = calcSold(
-                  rangeOther.styleRollUpOtherInitialRetek,
-                  rangeOther.styleRollUpOtherCurrentRetek);
-              rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
-                  rangeOther.styleRollUpOtherInitialRetek,
-                  rangeOther.styleRolledUpOtherSold,
-                  rangeOther.styleRollUpOtherFound);
+              if(range.styleRollUpOtherInitialRetek!=0) {
+                OtherRangeModel rangeOther = new OtherRangeModel();
+                rangeOther.rangeName = range.rangeName;
+                rangeOther.rangeNumber = range.rangeNumber;
+                rangeOther.styleRollUpOtherCurrentRetek =
+                    range.styleRollUpOtherCurrentRetek;
+                rangeOther.styleRollUpOtherInitialRetek =
+                    range.styleRollUpOtherInitialRetek;
+                rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
+                rangeOther.styleRolledUpOtherSold = calcSold(
+                    rangeOther.styleRollUpOtherInitialRetek,
+                    rangeOther.styleRollUpOtherCurrentRetek);
+                rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
+                    rangeOther.styleRollUpOtherInitialRetek,
+                    rangeOther.styleRolledUpOtherSold,
+                    rangeOther.styleRollUpOtherFound);
+                otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                    .add(rangeOther);
+              }
 
               //threec range
-              range3c.rangeName = range.rangeName;
-              range3c.rangeNumber = range.rangeNumber;
-              range3c.styleRollUp3CCurrentRetek =
-                  range.styleRollUp3CCurrentRetek;
-              range3c.styleRollUp3CInitialRetek =
-                  range.styleRollUp1StInitialRetek;
-              range3c.styleRollUp3CFound = range.styleRollUp3CFound;
-              range3c.styleRolledUp3CSold = calcSold(
-                  range3c.styleRollUp3CInitialRetek,
-                  range3c.styleRollUp3CCurrentRetek);
-              range3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                  range3c.styleRollUp3CInitialRetek,
-                  range3c.styleRolledUp3CSold,
-                  range3c.styleRollUp3CFound);
-
-              firstMarkdownDepartmentModel
-                  .firstMarkdownCategoryList.first.firstMarkupRangeModel
-                  .add(range1st);
-              otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                  .add(rangeOther);
-              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                  .add(range3c);
+              if(range.styleRollUp3CInitialRetek!=0) {
+                ThreeCRangeModel range3c = new ThreeCRangeModel();
+                range3c.rangeName = range.rangeName;
+                range3c.rangeNumber = range.rangeNumber;
+                range3c.styleRollUp3CCurrentRetek =
+                    range.styleRollUp3CCurrentRetek;
+                range3c.styleRollUp3CInitialRetek =
+                    range.styleRollUp1StInitialRetek;
+                range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+                range3c.styleRolledUp3CSold = calcSold(
+                    range3c.styleRollUp3CInitialRetek,
+                    range3c.styleRollUp3CCurrentRetek);
+                range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                    range3c.styleRollUp3CInitialRetek,
+                    range3c.styleRolledUp3CSold,
+                    range3c.styleRollUp3CFound);
+                threeCDepartmentModel.threeCCategoryList.last.threeCRangeList
+                    .add(range3c);
+              }
 
               for (Style style in range.styles) {
-                FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
-                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
-                OtherStyleModel otherStyle = new OtherStyleModel();
 
-                //1st style
-                firstStyle.currentPrice = style.currentPrice;
-                firstStyle.currentRetekAmount = style.currentRetekAmount;
-                firstStyle.foundAmount = style.foundAmount;
-                firstStyle.initialPrice = style.initialPrice;
-                firstStyle.initialRetekAmount = style.initialRetekAmount;
-                firstStyle.is3C = style.is3C;
-                firstStyle.styleDescription = style.styleDescription;
-                firstStyle.styleNumber = style.styleNumber;
-                firstStyle.soldAmount = calcSold(firstStyle.initialRetekAmount, firstStyle.currentRetekAmount);
-                firstStyle.outstanding = calculateOutstanding(firstStyle.initialRetekAmount, firstStyle.soldAmount,firstStyle.foundAmount);
+                if(style.initialRetekAmount!=0) {
 
-                //3c style
-                threeCStyle.currentPrice = style.currentPrice;
-                threeCStyle.currentRetekAmount = style.currentRetekAmount;
-                threeCStyle.foundAmount = style.foundAmount;
-                threeCStyle.initialPrice = style.initialPrice;
-                threeCStyle.initialRetekAmount = style.initialRetekAmount;
-                threeCStyle.is3C = style.is3C;
-                threeCStyle.styleDescription = style.styleDescription;
-                threeCStyle.styleNumber = style.styleNumber;
-                threeCStyle.soldAmount = calcSold(threeCStyle.initialRetekAmount, threeCStyle.currentRetekAmount);
-                threeCStyle.outstanding = calculateOutstanding(threeCStyle.initialRetekAmount, threeCStyle.soldAmount,threeCStyle.foundAmount);
+                  //1st style
+                  if(range.styleRollUp1StInitialRetek!=0) {
+                    FirstMarkupStyleModel firstStyle = new FirstMarkupStyleModel();
+                    firstStyle.currentPrice = style.currentPrice;
+                    firstStyle.currentRetekAmount = style.currentRetekAmount;
+                    firstStyle.foundAmount = style.foundAmount;
+                    firstStyle.initialPrice = style.initialPrice;
+                    firstStyle.initialRetekAmount = style.initialRetekAmount;
+                    firstStyle.is3C = style.is3C;
+                    firstStyle.styleDescription = style.styleDescription;
+                    firstStyle.styleNumber = style.styleNumber;
+                    firstStyle.soldAmount = calcSold(
+                        firstStyle.initialRetekAmount,
+                        firstStyle.currentRetekAmount);
+                    firstStyle.outstanding = calculateOutstanding(
+                        firstStyle.initialRetekAmount, firstStyle.soldAmount,
+                        firstStyle.foundAmount);
+                    firstMarkdownDepartmentModel.firstMarkdownCategoryList.last
+                        .firstMarkupRangeModel.last.firstMarkupStyleList
+                        .add(firstStyle);
+                  }
 
-                //other style
-                otherStyle.currentPrice = style.currentPrice;
-                otherStyle.currentRetekAmount = style.currentRetekAmount;
-                otherStyle.foundAmount = style.foundAmount;
-                otherStyle.initialPrice = style.initialPrice;
-                otherStyle.initialRetekAmount = style.initialRetekAmount;
-                otherStyle.is3C = style.is3C;
-                otherStyle.styleDescription = style.styleDescription;
-                otherStyle.styleNumber = style.styleNumber;
-                otherStyle.soldAmount = calcSold(otherStyle.initialRetekAmount, otherStyle.currentRetekAmount);
-                otherStyle.outstanding = calculateOutstanding(otherStyle.initialRetekAmount, otherStyle.soldAmount,otherStyle.foundAmount);
+                  //3c style
+                  if(range.styleRollUp3CInitialRetek!=0) {
+                    ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+                    threeCStyle.currentPrice = style.currentPrice;
+                    threeCStyle.currentRetekAmount = style.currentRetekAmount;
+                    threeCStyle.foundAmount = style.foundAmount;
+                    threeCStyle.initialPrice = style.initialPrice;
+                    threeCStyle.initialRetekAmount = style.initialRetekAmount;
+                    threeCStyle.is3C = style.is3C;
+                    threeCStyle.styleDescription = style.styleDescription;
+                    threeCStyle.styleNumber = style.styleNumber;
+                    threeCStyle.soldAmount = calcSold(
+                        threeCStyle.initialRetekAmount,
+                        threeCStyle.currentRetekAmount);
+                    threeCStyle.outstanding = calculateOutstanding(
+                        threeCStyle.initialRetekAmount, threeCStyle.soldAmount,
+                        threeCStyle.foundAmount);
+                    threeCDepartmentModel.threeCCategoryList.last
+                        .threeCRangeList
+                        .last.threeCStyleModelList
+                        .add(threeCStyle);
+                  }
 
-                firstMarkdownDepartmentModel.firstMarkdownCategoryList.first
-                    .firstMarkupRangeModel.first.firstMarkupStyleList
-                    .add(firstStyle);
-                threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                    .first.threeCStyleModelList
-                    .add(threeCStyle);
-
-                otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                    .first.otherStyleModelList
-                    .add(otherStyle);
+                  //other style
+                  if(range.styleRollUpOtherInitialRetek!=0) {
+                    OtherStyleModel otherStyle = new OtherStyleModel();
+                    otherStyle.currentPrice = style.currentPrice;
+                    otherStyle.currentRetekAmount = style.currentRetekAmount;
+                    otherStyle.foundAmount = style.foundAmount;
+                    otherStyle.initialPrice = style.initialPrice;
+                    otherStyle.initialRetekAmount = style.initialRetekAmount;
+                    otherStyle.is3C = style.is3C;
+                    otherStyle.styleDescription = style.styleDescription;
+                    otherStyle.styleNumber = style.styleNumber;
+                    otherStyle.soldAmount = calcSold(
+                        otherStyle.initialRetekAmount,
+                        otherStyle.currentRetekAmount);
+                    otherStyle.outstanding = calculateOutstanding(
+                        otherStyle.initialRetekAmount, otherStyle.soldAmount,
+                        otherStyle.foundAmount);
+                    otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                        .last.otherStyleModelList
+                        .add(otherStyle);
+                  }
+                }
               } //style for each
 
             } //ranges for each
@@ -651,70 +736,78 @@ class DepartmentModel {
           department.categoryRollUpOtherInitialRetek != 0 &&
           department.categoryRollUp3CInitialRetek == 0) {
         for (Category category in department.categories) {
-          OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
-          otherCategoryModel.categoryName = category.categoryName;
-          otherCategoryModel.categoryNumber = category.categoryNumber;
-          otherCategoryModel.rangeRollOtherCurrentRetek =
-              category.rangeRollUpOtherCurrentRetek;
-          otherCategoryModel.rangeRollUpOtherinitialRetek =
-              category.rangeRollUpOtherInitialRetek;
-          otherCategoryModel.rangeRollUpOtherFound =
-              category.rangeRollUpOtherFound;
 
-          otherCategoryModel.rangeRolledUpOtherSold = calcSold(
-              otherCategoryModel.rangeRollUpOtherinitialRetek,
-              otherCategoryModel.rangeRollOtherCurrentRetek);
-          otherCategoryModel.rangeRolledOtherOutstanding = calculateOutstanding(
-              otherCategoryModel.rangeRollOtherCurrentRetek,
-              otherCategoryModel.rangeRolledUpOtherSold,
-              otherCategoryModel.rangeRollUpOtherFound);
-
-          otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
           //other
+          if(category.rangeRollUpOtherInitialRetek!=0) {
+            OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
+            otherCategoryModel.categoryName = category.categoryName;
+            otherCategoryModel.categoryNumber = category.categoryNumber;
+            otherCategoryModel.rangeRollOtherCurrentRetek =
+                category.rangeRollUpOtherCurrentRetek;
+            otherCategoryModel.rangeRollUpOtherinitialRetek =
+                category.rangeRollUpOtherInitialRetek;
+            otherCategoryModel.rangeRollUpOtherFound =
+                category.rangeRollUpOtherFound;
+
+            otherCategoryModel.rangeRolledUpOtherSold = calcSold(
+                otherCategoryModel.rangeRollUpOtherinitialRetek,
+                otherCategoryModel.rangeRollOtherCurrentRetek);
+            otherCategoryModel.rangeRolledOtherOutstanding =
+                calculateOutstanding(
+                    otherCategoryModel.rangeRollOtherCurrentRetek,
+                    otherCategoryModel.rangeRolledUpOtherSold,
+                    otherCategoryModel.rangeRollUpOtherFound);
+
+            otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+          }
 
           for (Range range in category.ranges) {
             OtherRangeModel rangeOther = new OtherRangeModel();
-            ThreeCRangeModel range3c = new ThreeCRangeModel();
 
             //other range
-            rangeOther.rangeName = range.rangeName;
-            rangeOther.rangeNumber = range.rangeNumber;
-            rangeOther.styleRollUpOtherCurrentRetek =
-                range.styleRollUpOtherCurrentRetek;
-            rangeOther.styleRollUpOtherInitialRetek =
-                range.styleRollUpOtherInitialRetek;
-            rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
-            rangeOther.styleRolledUpOtherSold = calcSold(
-                rangeOther.styleRollUpOtherInitialRetek,
-                rangeOther.styleRollUpOtherCurrentRetek);
-            rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
-                rangeOther.styleRollUpOtherInitialRetek,
-                rangeOther.styleRolledUpOtherSold,
-                rangeOther.styleRollUpOtherFound);
+            if(range.styleRollUpOtherInitialRetek!=0) {
+              rangeOther.rangeName = range.rangeName;
+              rangeOther.rangeNumber = range.rangeNumber;
+              rangeOther.styleRollUpOtherCurrentRetek =
+                  range.styleRollUpOtherCurrentRetek;
+              rangeOther.styleRollUpOtherInitialRetek =
+                  range.styleRollUpOtherInitialRetek;
+              rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
+              rangeOther.styleRolledUpOtherSold = calcSold(
+                  rangeOther.styleRollUpOtherInitialRetek,
+                  rangeOther.styleRollUpOtherCurrentRetek);
+              rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
+                  rangeOther.styleRollUpOtherInitialRetek,
+                  rangeOther.styleRolledUpOtherSold,
+                  rangeOther.styleRollUpOtherFound);
 
-            otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                .add(rangeOther);
-            //Add range model to separate catalogue models
+              otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                  .add(rangeOther);
+            }
 
             for (Style style in range.styles) {
-              OtherStyleModel otherStyle = new OtherStyleModel();
 
               //other style
-              otherStyle.currentPrice = style.currentPrice;
-              otherStyle.currentRetekAmount = style.currentRetekAmount;
-              otherStyle.foundAmount = style.foundAmount;
-              otherStyle.initialPrice = style.initialPrice;
-              otherStyle.initialRetekAmount = style.initialRetekAmount;
-              otherStyle.is3C = style.is3C;
-              otherStyle.styleDescription = style.styleDescription;
-              otherStyle.styleNumber = style.styleNumber;
-              otherStyle.soldAmount = calcSold(otherStyle.initialRetekAmount, otherStyle.currentRetekAmount);
-              otherStyle.outstanding = calculateOutstanding(otherStyle.initialRetekAmount, otherStyle.soldAmount,otherStyle.foundAmount);
-
-              otherDepartmentModel.otherCategoryList.first.otherRangeModel.first
-                  .otherStyleModelList
-                  .add(otherStyle);
-
+              if(range.styleRollUpOtherInitialRetek!=0) {
+                OtherStyleModel otherStyle = new OtherStyleModel();
+                otherStyle.currentPrice = style.currentPrice;
+                otherStyle.currentRetekAmount = style.currentRetekAmount;
+                otherStyle.foundAmount = style.foundAmount;
+                otherStyle.initialPrice = style.initialPrice;
+                otherStyle.initialRetekAmount = style.initialRetekAmount;
+                otherStyle.is3C = style.is3C;
+                otherStyle.styleDescription = style.styleDescription;
+                otherStyle.styleNumber = style.styleNumber;
+                otherStyle.soldAmount = calcSold(
+                    otherStyle.initialRetekAmount,
+                    otherStyle.currentRetekAmount);
+                otherStyle.outstanding = calculateOutstanding(
+                    otherStyle.initialRetekAmount, otherStyle.soldAmount,
+                    otherStyle.foundAmount);
+                otherDepartmentModel.otherCategoryList.last.otherRangeModel
+                    .last.otherStyleModelList
+                    .add(otherStyle);
+              }
             } //style for each
 
           } //ranges for each
@@ -726,65 +819,75 @@ class DepartmentModel {
           department.categoryRollUp3CInitialRetek != 0 &&
           department.categoryRollUpOtherInitialRetek == 0) {
         for (Category category in department.categories) {
-          ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
-          threeCCategoryModel.categoryName = category.categoryName;
-          threeCCategoryModel.rangeRollUp3cCurrentRetek =
-              category.rangeRollUp3CCurrentRetek;
-          threeCCategoryModel.rangeRollUp3cinitialRetek =
-              category.rangeRollUp3CInitialRetek;
-          threeCCategoryModel.rangeRollUp3cFound = category.rangeRollUp3CFound;
-          threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
-              threeCCategoryModel.rangeRollUp3cinitialRetek,
-              threeCCategoryModel.rangeRollUp3cCurrentRetek);
-          threeCCategoryModel.rangeRolledUp3cOutstanding = calculateOutstanding(
-              threeCCategoryModel.rangeRollUp3cinitialRetek,
-              threeCCategoryModel.rangeRolledUpc3Sold,
-              threeCCategoryModel.rangeRollUp3cFound);
 
-          threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
           //3c
+          if(category.rangeRollUp3CInitialRetek!=0) {
+            ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
+            threeCCategoryModel.categoryName = category.categoryName;
+            threeCCategoryModel.rangeRollUp3cCurrentRetek =
+                category.rangeRollUp3CCurrentRetek;
+            threeCCategoryModel.rangeRollUp3cinitialRetek =
+                category.rangeRollUp3CInitialRetek;
+            threeCCategoryModel.rangeRollUp3cFound =
+                category.rangeRollUp3CFound;
+            threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
+                threeCCategoryModel.rangeRollUp3cinitialRetek,
+                threeCCategoryModel.rangeRollUp3cCurrentRetek);
+            threeCCategoryModel.rangeRolledUp3cOutstanding =
+                calculateOutstanding(
+                    threeCCategoryModel.rangeRollUp3cinitialRetek,
+                    threeCCategoryModel.rangeRolledUpc3Sold,
+                    threeCCategoryModel.rangeRollUp3cFound);
+            threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+          }
+
 
           for (Range range in category.ranges) {
-            ThreeCRangeModel range3c = new ThreeCRangeModel();
 
             //threec range
-            range3c.rangeName = range.rangeName;
-            range3c.rangeNumber = range.rangeNumber;
-            range3c.styleRollUp3CCurrentRetek = range.styleRollUp3CCurrentRetek;
-            range3c.styleRollUp3CInitialRetek =
-                range.styleRollUp1StInitialRetek;
-            range3c.styleRollUp3CFound = range.styleRollUp3CFound;
-            range3c.styleRolledUp3CSold = calcSold(
-                range3c.styleRollUp3CInitialRetek,
-                range3c.styleRollUp3CCurrentRetek);
-            range3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                range3c.styleRollUp3CInitialRetek,
-                range3c.styleRolledUp3CSold,
-                range3c.styleRollUp3CFound);
-
-            threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                .add(range3c);
-            //Add range model to separate catalogue models
+            if(range.styleRollUp3CInitialRetek!=0) {
+              ThreeCRangeModel range3c = new ThreeCRangeModel();
+              range3c.rangeName = range.rangeName;
+              range3c.rangeNumber = range.rangeNumber;
+              range3c.styleRollUp3CCurrentRetek =
+                  range.styleRollUp3CCurrentRetek;
+              range3c.styleRollUp3CInitialRetek =
+                  range.styleRollUp1StInitialRetek;
+              range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+              range3c.styleRolledUp3CSold = calcSold(
+                  range3c.styleRollUp3CInitialRetek,
+                  range3c.styleRollUp3CCurrentRetek);
+              range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                  range3c.styleRollUp3CInitialRetek,
+                  range3c.styleRolledUp3CSold,
+                  range3c.styleRollUp3CFound);
+              threeCDepartmentModel.threeCCategoryList.last.threeCRangeList
+                  .add(range3c);
+            }
 
             for (Style style in range.styles) {
-              ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
 
               //3c style
-              threeCStyle.currentPrice = style.currentPrice;
-              threeCStyle.currentRetekAmount = style.currentRetekAmount;
-              threeCStyle.foundAmount = style.foundAmount;
-              threeCStyle.initialPrice = style.initialPrice;
-              threeCStyle.initialRetekAmount = style.initialRetekAmount;
-              threeCStyle.is3C = style.is3C;
-              threeCStyle.styleDescription = style.styleDescription;
-              threeCStyle.styleNumber = style.styleNumber;
-              threeCStyle.soldAmount = calcSold(threeCStyle.initialRetekAmount, threeCStyle.currentRetekAmount);
-              threeCStyle.outstanding = calculateOutstanding(threeCStyle.initialRetekAmount, threeCStyle.soldAmount,threeCStyle.foundAmount);
-
-              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                  .first.threeCStyleModelList
-                  .add(threeCStyle);
-              //add style model to separate range models
+              if(range.styleRollUp3CInitialRetek!=0) {
+                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+                threeCStyle.currentPrice = style.currentPrice;
+                threeCStyle.currentRetekAmount = style.currentRetekAmount;
+                threeCStyle.foundAmount = style.foundAmount;
+                threeCStyle.initialPrice = style.initialPrice;
+                threeCStyle.initialRetekAmount = style.initialRetekAmount;
+                threeCStyle.is3C = style.is3C;
+                threeCStyle.styleDescription = style.styleDescription;
+                threeCStyle.styleNumber = style.styleNumber;
+                threeCStyle.soldAmount = calcSold(
+                    threeCStyle.initialRetekAmount,
+                    threeCStyle.currentRetekAmount);
+                threeCStyle.outstanding = calculateOutstanding(
+                    threeCStyle.initialRetekAmount, threeCStyle.soldAmount,
+                    threeCStyle.foundAmount);
+                threeCDepartmentModel.threeCCategoryList.last.threeCRangeList
+                    .last.threeCStyleModelList
+                    .add(threeCStyle);
+              }
 
             } //style for each
 
@@ -792,125 +895,146 @@ class DepartmentModel {
 
         } //category for each
 
-      //3c and other
+        //3c and other
       } else if (department.categoryRollUp1StInitialRetek == 0 &&
           department.categoryRollUp3CInitialRetek != 0 &&
           department.categoryRollUpOtherInitialRetek != 0) {
         for (Category category in department.categories) {
-          ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
-          threeCCategoryModel.categoryName = category.categoryName;
-          threeCCategoryModel.rangeRollUp3cCurrentRetek =
-              category.rangeRollUp3CCurrentRetek;
-          threeCCategoryModel.rangeRollUp3cinitialRetek =
-              category.rangeRollUp3CInitialRetek;
-          threeCCategoryModel.rangeRollUp3cFound = category.rangeRollUp3CFound;
-          threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
-              threeCCategoryModel.rangeRollUp3cinitialRetek,
-              threeCCategoryModel.rangeRollUp3cCurrentRetek);
-          threeCCategoryModel.rangeRolledUp3cOutstanding = calculateOutstanding(
-              threeCCategoryModel.rangeRollUp3cinitialRetek,
-              threeCCategoryModel.rangeRolledUpc3Sold,
-              threeCCategoryModel.rangeRollUp3cFound);
 
-          threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
           //3c
+          if(category.rangeRollUp3CInitialRetek!=0) {
+            ThreeCCategoryModel threeCCategoryModel = new ThreeCCategoryModel();
+            threeCCategoryModel.categoryName = category.categoryName;
+            threeCCategoryModel.rangeRollUp3cCurrentRetek =
+                category.rangeRollUp3CCurrentRetek;
+            threeCCategoryModel.rangeRollUp3cinitialRetek =
+                category.rangeRollUp3CInitialRetek;
+            threeCCategoryModel.rangeRollUp3cFound =
+                category.rangeRollUp3CFound;
+            threeCCategoryModel.rangeRolledUpc3Sold = calcSold(
+                threeCCategoryModel.rangeRollUp3cinitialRetek,
+                threeCCategoryModel.rangeRollUp3cCurrentRetek);
+            threeCCategoryModel.rangeRolledUp3cOutstanding =
+                calculateOutstanding(
+                    threeCCategoryModel.rangeRollUp3cinitialRetek,
+                    threeCCategoryModel.rangeRolledUpc3Sold,
+                    threeCCategoryModel.rangeRollUp3cFound);
+            threeCDepartmentModel.threeCCategoryList.add(threeCCategoryModel);
+          }
 
-          OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
-          otherCategoryModel.categoryName = category.categoryName;
-          otherCategoryModel.categoryNumber = category.categoryNumber;
-          otherCategoryModel.rangeRollOtherCurrentRetek =
-              category.rangeRollUpOtherCurrentRetek;
-          otherCategoryModel.rangeRollUpOtherinitialRetek =
-              category.rangeRollUpOtherInitialRetek;
-          otherCategoryModel.rangeRollUpOtherFound =
-              category.rangeRollUpOtherFound;
-
-          otherCategoryModel.rangeRolledUpOtherSold = calcSold(
-              otherCategoryModel.rangeRollUpOtherinitialRetek,
-              otherCategoryModel.rangeRollOtherCurrentRetek);
-          otherCategoryModel.rangeRolledOtherOutstanding = calculateOutstanding(
-              otherCategoryModel.rangeRollOtherCurrentRetek,
-              otherCategoryModel.rangeRolledUpOtherSold,
-              otherCategoryModel.rangeRollUpOtherFound);
-
-          otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
           //other
+          if(category.rangeRollUpOtherInitialRetek!=0) {
+            OtherCategoryModel otherCategoryModel = new OtherCategoryModel();
+            otherCategoryModel.categoryName = category.categoryName;
+            otherCategoryModel.categoryNumber = category.categoryNumber;
+            otherCategoryModel.rangeRollOtherCurrentRetek =
+                category.rangeRollUpOtherCurrentRetek;
+            otherCategoryModel.rangeRollUpOtherinitialRetek =
+                category.rangeRollUpOtherInitialRetek;
+            otherCategoryModel.rangeRollUpOtherFound =
+                category.rangeRollUpOtherFound;
+            otherCategoryModel.rangeRolledUpOtherSold = calcSold(
+                otherCategoryModel.rangeRollUpOtherinitialRetek,
+                otherCategoryModel.rangeRollOtherCurrentRetek);
+            otherCategoryModel.rangeRolledOtherOutstanding =
+                calculateOutstanding(
+                    otherCategoryModel.rangeRollOtherCurrentRetek,
+                    otherCategoryModel.rangeRolledUpOtherSold,
+                    otherCategoryModel.rangeRollUpOtherFound);
+            otherDepartmentModel.otherCategoryList.add(otherCategoryModel);
+          }
+
 
           for (Range range in category.ranges) {
-            ThreeCRangeModel range3c = new ThreeCRangeModel();
-            OtherRangeModel rangeOther = new OtherRangeModel();
 
             //threec range
-            range3c.rangeName = range.rangeName;
-            range3c.rangeNumber = range.rangeNumber;
-            range3c.styleRollUp3CCurrentRetek = range.styleRollUp3CCurrentRetek;
-            range3c.styleRollUp3CInitialRetek =
-                range.styleRollUp1StInitialRetek;
-            range3c.styleRollUp3CFound = range.styleRollUp3CFound;
-            range3c.styleRolledUp3CSold = calcSold(
-                range3c.styleRollUp3CInitialRetek,
-                range3c.styleRollUp3CCurrentRetek);
-            range3c.styleRolledUp3cOutstanding = calculateOutstanding(
-                range3c.styleRollUp3CInitialRetek,
-                range3c.styleRolledUp3CSold,
-                range3c.styleRollUp3CFound);
+            if(range.styleRollUp3CInitialRetek!=0) {
+              ThreeCRangeModel range3c = new ThreeCRangeModel();
+              range3c.rangeName = range.rangeName;
+              range3c.rangeNumber = range.rangeNumber;
+              range3c.styleRollUp3CCurrentRetek =
+                  range.styleRollUp3CCurrentRetek;
+              range3c.styleRollUp3CInitialRetek =
+                  range.styleRollUp1StInitialRetek;
+              range3c.styleRollUp3CFound = range.styleRollUp3CFound;
+              range3c.styleRolledUp3CSold = calcSold(
+                  range3c.styleRollUp3CInitialRetek,
+                  range3c.styleRollUp3CCurrentRetek);
+              range3c.styleRolledUp3cOutstanding = calculateOutstanding(
+                  range3c.styleRollUp3CInitialRetek,
+                  range3c.styleRolledUp3CSold,
+                  range3c.styleRollUp3CFound);
+              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                  .add(range3c);
+            }
 
             //other range
-            rangeOther.rangeName = range.rangeName;
-            rangeOther.rangeNumber = range.rangeNumber;
-            rangeOther.styleRollUpOtherCurrentRetek =
-                range.styleRollUpOtherCurrentRetek;
-            rangeOther.styleRollUpOtherInitialRetek =
-                range.styleRollUpOtherInitialRetek;
-            rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
-            rangeOther.styleRolledUpOtherSold = calcSold(
-                rangeOther.styleRollUpOtherInitialRetek,
-                rangeOther.styleRollUpOtherCurrentRetek);
-            rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
-                rangeOther.styleRollUpOtherInitialRetek,
-                rangeOther.styleRolledUpOtherSold,
-                rangeOther.styleRollUpOtherFound);
-
-            threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                .add(range3c);
-            otherDepartmentModel.otherCategoryList.first.otherRangeModel
-                .add(rangeOther);
+            if(range.styleRollUpOtherInitialRetek!=0) {
+              OtherRangeModel rangeOther = new OtherRangeModel();
+              rangeOther.rangeName = range.rangeName;
+              rangeOther.rangeNumber = range.rangeNumber;
+              rangeOther.styleRollUpOtherCurrentRetek =
+                  range.styleRollUpOtherCurrentRetek;
+              rangeOther.styleRollUpOtherInitialRetek =
+                  range.styleRollUpOtherInitialRetek;
+              rangeOther.styleRollUpOtherFound = range.styleRollUpOtherFound;
+              rangeOther.styleRolledUpOtherSold = calcSold(
+                  rangeOther.styleRollUpOtherInitialRetek,
+                  rangeOther.styleRollUpOtherCurrentRetek);
+              rangeOther.styleRolledUpOtherOutstanding = calculateOutstanding(
+                  rangeOther.styleRollUpOtherInitialRetek,
+                  rangeOther.styleRolledUpOtherSold,
+                  rangeOther.styleRollUpOtherFound);
+              otherDepartmentModel.otherCategoryList.first.otherRangeModel
+                  .add(rangeOther);
+            }
 
             for (Style style in range.styles) {
-              ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
-              OtherStyleModel otherStyle = new OtherStyleModel();
 
               //3c style
-              threeCStyle.currentPrice = style.currentPrice;
-              threeCStyle.currentRetekAmount = style.currentRetekAmount;
-              threeCStyle.foundAmount = style.foundAmount;
-              threeCStyle.initialPrice = style.initialPrice;
-              threeCStyle.initialRetekAmount = style.initialRetekAmount;
-              threeCStyle.is3C = style.is3C;
-              threeCStyle.styleDescription = style.styleDescription;
-              threeCStyle.styleNumber = style.styleNumber;
-              threeCStyle.soldAmount = calcSold(threeCStyle.initialRetekAmount, threeCStyle.currentRetekAmount);
-              threeCStyle.outstanding = calculateOutstanding(threeCStyle.initialRetekAmount, threeCStyle.soldAmount,threeCStyle.foundAmount);
+              if(range.styleRollUp3CInitialRetek!=0) {
+                ThreeCStyleModel threeCStyle = new ThreeCStyleModel();
+                threeCStyle.currentPrice = style.currentPrice;
+                threeCStyle.currentRetekAmount = style.currentRetekAmount;
+                threeCStyle.foundAmount = style.foundAmount;
+                threeCStyle.initialPrice = style.initialPrice;
+                threeCStyle.initialRetekAmount = style.initialRetekAmount;
+                threeCStyle.is3C = style.is3C;
+                threeCStyle.styleDescription = style.styleDescription;
+                threeCStyle.styleNumber = style.styleNumber;
+                threeCStyle.soldAmount = calcSold(
+                    threeCStyle.initialRetekAmount,
+                    threeCStyle.currentRetekAmount);
+                threeCStyle.outstanding = calculateOutstanding(
+                    threeCStyle.initialRetekAmount, threeCStyle.soldAmount,
+                    threeCStyle.foundAmount);
+                threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
+                    .first.threeCStyleModelList
+                    .add(threeCStyle);
+              }
 
               //other style
-              otherStyle.currentPrice = style.currentPrice;
-              otherStyle.currentRetekAmount = style.currentRetekAmount;
-              otherStyle.foundAmount = style.foundAmount;
-              otherStyle.initialPrice = style.initialPrice;
-              otherStyle.initialRetekAmount = style.initialRetekAmount;
-              otherStyle.is3C = style.is3C;
-              otherStyle.styleDescription = style.styleDescription;
-              otherStyle.styleNumber = style.styleNumber;
-              otherStyle.soldAmount = calcSold(otherStyle.initialRetekAmount, otherStyle.currentRetekAmount);
-              otherStyle.outstanding = calculateOutstanding(otherStyle.initialRetekAmount, otherStyle.soldAmount,otherStyle.foundAmount);
-
-              threeCDepartmentModel.threeCCategoryList.first.threeCRangeList
-                  .first.threeCStyleModelList
-                  .add(threeCStyle);
-
-              otherDepartmentModel.otherCategoryList.first.otherRangeModel.first
-                  .otherStyleModelList
-                  .add(otherStyle);
+              if(range.styleRollUpOtherInitialRetek!=0){
+                OtherStyleModel otherStyle = new OtherStyleModel();
+                otherStyle.currentPrice = style.currentPrice;
+                otherStyle.currentRetekAmount = style.currentRetekAmount;
+                otherStyle.foundAmount = style.foundAmount;
+                otherStyle.initialPrice = style.initialPrice;
+                otherStyle.initialRetekAmount = style.initialRetekAmount;
+                otherStyle.is3C = style.is3C;
+                otherStyle.styleDescription = style.styleDescription;
+                otherStyle.styleNumber = style.styleNumber;
+                otherStyle.soldAmount =
+                    calcSold(otherStyle.initialRetekAmount,
+                        otherStyle.currentRetekAmount);
+                otherStyle.outstanding = calculateOutstanding(
+                    otherStyle.initialRetekAmount, otherStyle.soldAmount,
+                    otherStyle.foundAmount);
+                otherDepartmentModel.otherCategoryList.first.otherRangeModel
+                    .first
+                    .otherStyleModelList
+                    .add(otherStyle);
+              }
             } //style for each
 
           } //ranges for each

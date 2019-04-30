@@ -49,7 +49,7 @@ class RangeViewState extends State<RangeView>{
     'Sold': ''
   };
 
-  String subTitle = "";
+  String subTitle = "RangeView";
   int listCount = 0;
   Widget BuilderToUse;
 
@@ -97,7 +97,12 @@ class RangeViewState extends State<RangeView>{
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(subTitle, textAlign: TextAlign.center)),
+      appBar:AppBar(title: Text(subTitle, textAlign: TextAlign.center)
+        ,automaticallyImplyLeading: true,
+        leading: IconButton(icon:Icon(Icons.arrow_back),
+          onPressed:() => Navigator.pop(context, false),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
         currentIndex: _currentIndex,
@@ -146,6 +151,7 @@ class RangeViewState extends State<RangeView>{
     details['Sold'] =
         firstMarkupRangeList[index].styleRolledUp1stSold.toString() + "?";
     selectionRangeList.add(firstMarkupRangeList[index]);
+    print("Range first");
 
     return Card(
         child: Container(
@@ -261,7 +267,7 @@ class RangeViewState extends State<RangeView>{
     threeCRangeList[index].styleRolledUp3cOutstanding.toString();
     details['Sold'] = threeCRangeList[index].styleRolledUp3CSold.toString() + "?";
     selectionRangeList.add(threeCRangeList[index]);
-    print("Catagory3c case shown");
+    print("Range 3c");
 
 
     return Card(
@@ -379,7 +385,7 @@ class RangeViewState extends State<RangeView>{
     details['Sold'] =
         otherRangeList[index].styleRolledUpOtherSold.toString() + "?";
     selectionRangeList.add(otherRangeList[index]);
-    print("CategryOther case shown");
+    print("Range Other");
 
     return Card(
         child: Container(
