@@ -49,7 +49,7 @@ class RangeViewState extends State<RangeView>{
     'Sold': ''
   };
 
-  String subTitle = "RangeView";
+  String subTitle = "Ranges";
   int listCount = 0;
   Widget BuilderToUse;
 
@@ -76,19 +76,19 @@ class RangeViewState extends State<RangeView>{
     String selectionListName = selectionList.runtimeType.toString();
 
     //todo : simulate the first selection to the others
-    if(selectionList.first is FirstMarkdownCategoryModel){
+    if(selectionList.last is FirstMarkdownCategoryModel){
       for(int i = 0;i<selectionList.length;i++){
         firstMarkupCatList.add(selectionList[i]);
       }
       firstMarkupRangeList = firstMarkupCatList[selectionId].firstMarkupRangeModel;
       listCount = firstMarkupRangeList.length;
-    }else if(selectionList.first is ThreeCCategoryModel){
+    }else if(selectionList.last is ThreeCCategoryModel){
       for(int i = 0;i<selectionList.length;i++){
        threeCatList.add(selectionList[i]);
       }
       threeCRangeList = threeCatList[selectionId].threeCRangeList;
       listCount = threeCRangeList.length;
-    }else if(selectionList.first is OtherCategoryModel){
+    }else if(selectionList.last is OtherCategoryModel){
       for(int i = 0;i<selectionList.length;i++){
         otherCatList.add(selectionList[i]);
       }
@@ -130,6 +130,7 @@ class RangeViewState extends State<RangeView>{
                   context,
                   new MaterialPageRoute(builder: (context) => StyleView(selectionRangeList, departmentModel, _selection,selectionId)),
                 );
+
               });
         },
         itemCount: listCount,
@@ -150,6 +151,7 @@ class RangeViewState extends State<RangeView>{
         firstMarkupRangeList[index].styleRolledUp1stOutstanding.toString();
     details['Sold'] =
         firstMarkupRangeList[index].styleRolledUp1stSold.toString() + "?";
+    selectionRangeList = new List();
     selectionRangeList.add(firstMarkupRangeList[index]);
     print("Range first");
 
@@ -266,6 +268,7 @@ class RangeViewState extends State<RangeView>{
     details['Outstanding'] =
     threeCRangeList[index].styleRolledUp3cOutstanding.toString();
     details['Sold'] = threeCRangeList[index].styleRolledUp3CSold.toString() + "?";
+    selectionRangeList = new List();
     selectionRangeList.add(threeCRangeList[index]);
     print("Range 3c");
 
@@ -384,6 +387,7 @@ class RangeViewState extends State<RangeView>{
         otherRangeList[index].styleRolledUpOtherOutstanding.toString();
     details['Sold'] =
         otherRangeList[index].styleRolledUpOtherSold.toString() + "?";
+    selectionRangeList = new List();
     selectionRangeList.add(otherRangeList[index]);
     print("Range Other");
 

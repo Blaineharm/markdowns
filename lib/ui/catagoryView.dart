@@ -42,7 +42,7 @@ class CatagoryViewState extends State<CatagoryView>{
   List<dynamic> selectionList = new List();
   int selectionId = 0;
   String _selection = "";
-  List<dynamic> selectionCatList = new List();
+  List<dynamic> selectionCatList;
 
   Map<String, String> details = {
     'Description': '',
@@ -52,7 +52,7 @@ class CatagoryViewState extends State<CatagoryView>{
     'Sold': ''
   };
 
-  String subTitle = "";
+  String subTitle = "Catagory";
   int listCount = 0;
   Widget BuilderToUse;
 
@@ -80,19 +80,19 @@ class CatagoryViewState extends State<CatagoryView>{
     String selectionListName = selectionList.runtimeType.toString();
 
     //todo : simulate the first selection to the others
-    if(selectionList.first is FirstMarkdownDepartmentModel){
+    if(selectionList.last is FirstMarkdownDepartmentModel){
       for(int i = 0;i<selectionList.length;i++){
         firstDeptMarkupList.add(selectionList[i]);
       }
       firstMarkupCatList = firstDeptMarkupList[selectionId].firstMarkdownCategoryList;
       listCount = firstMarkupCatList.length;
-    }else if(selectionList.first is ThreeCDepartmentModel){
+    }else if(selectionList.last is ThreeCDepartmentModel){
         for(int i = 0;i<selectionList.length;i++){
           threeCDeptList.add(selectionList[i]);
         }
         threeCatList = threeCDeptList[selectionId].threeCCategoryList;
       listCount = threeCatList.length;
-    }else if(selectionList.first is OtherDepartmentModel){
+    }else if(selectionList.last is OtherDepartmentModel){
           for(int i = 0;i<selectionList.length;i++){
             otherDeptList.add(selectionList[i]);
           }
@@ -103,9 +103,9 @@ class CatagoryViewState extends State<CatagoryView>{
     return Scaffold(
       appBar: AppBar(title: Text(subTitle, textAlign: TextAlign.center)
       ,automaticallyImplyLeading: true,
-        leading: IconButton(icon:Icon(Icons.arrow_back),
-      onPressed:() => Navigator.pop(context, false),
-    ),
+//        leading: IconButton(icon:Icon(Icons.arrow_back),
+//      onPressed:() => Navigator.pop(context, false),
+//    ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
@@ -154,6 +154,7 @@ class CatagoryViewState extends State<CatagoryView>{
         firstMarkupCatList[index].rangeRollUp1stOutstanding.toString();
     details['Sold'] =
         firstMarkupCatList[index].rangeRolledUp1stSold.toString() + "?";
+    selectionCatList = new List();
     selectionCatList.add(firstMarkupCatList[index]);
     
     return Card(
@@ -269,6 +270,7 @@ class CatagoryViewState extends State<CatagoryView>{
     details['Outstanding'] =
         threeCatList[index].rangeRolledUp3cOutstanding.toString();
     details['Sold'] = threeCatList[index].rangeRolledUpc3Sold.toString() + "?";
+    selectionCatList = new List();
     selectionCatList.add(threeCatList[index]);
     print("Catagory3c case shown");
 
@@ -386,6 +388,7 @@ class CatagoryViewState extends State<CatagoryView>{
         otherCatList[index].rangeRolledOtherOutstanding.toString();
     details['Sold'] =
         otherCatList[index].rangeRolledUpOtherSold.toString() + "?";
+    selectionCatList = new List();
     selectionCatList.add(otherCatList[index]);
     print("CategryOther case shown");
 

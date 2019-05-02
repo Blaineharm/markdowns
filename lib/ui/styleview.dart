@@ -38,7 +38,7 @@ class StyleViewState extends State<StyleView> {
   int _currentIndex = 0;
   List<dynamic> selectionList = new List();
   int selectorID = 0;
-  List<dynamic> selectedStyle = new List();
+  List<dynamic> selectedStyleList = new List();
 
   String _selection = "";
 
@@ -50,7 +50,7 @@ class StyleViewState extends State<StyleView> {
     'Sold': ''
   };
 
-  String subTitle = "";
+  String subTitle = "Styles";
   int listCount = 0;
   Widget BuilderToUse;
 
@@ -141,6 +141,9 @@ class StyleViewState extends State<StyleView> {
     details['Found'] = firstMarkupStyleList[index].foundAmount.toString();
     details['Outstanding'] = firstMarkupStyleList[index].outstanding.toString();
     details['Sold'] = firstMarkupStyleList[index].soldAmount.toString() + "?";
+    List<dynamic> selectedStyleList = new List();
+
+
 
     return Card(
         child: Container(
@@ -253,6 +256,7 @@ class StyleViewState extends State<StyleView> {
     details['Outstanding'] = threeCStyleList[index].foundAmount.toString();
     ;
     details['Sold'] = threeCStyleList[index].outstanding.toString();
+    List<dynamic> selectedStyleList = new List();
     print("Catagory3c case shown");
 
     return Card(
@@ -365,6 +369,7 @@ class StyleViewState extends State<StyleView> {
     details['Found'] = otherStyleList[index].foundAmount.toString();
     details['Outstanding'] = otherStyleList[index].outstanding.toString();
     details['Sold'] = otherStyleList[index].soldAmount.toString() + "?";
+    List<dynamic> selectedStyleList = new List();
     print("CategryOther case shown");
 
     return Card(
